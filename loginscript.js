@@ -82,7 +82,7 @@ function validateForm() {
         password.addClass('error-input');
         isValid = false;
     } else if (!validatePassword(password.val())) {
-
+        $('#passwordError').text('Password must contain uppercase, lowercase, numeric, and special characters.')
         password.addClass('error-input');
         isValid = false;
     }
@@ -101,7 +101,11 @@ function validateUserIdField(userIdField) {
     if (userId === '') {
         userIdError.text("User ID is required!");
         userIdField.addClass('error-input');
-    } else if (!validateUserId(userId)) {
+    }else if(userId.length < 4){
+        userIdError.text("UserId contains minimum four Numbers!")
+        userIdField.addClass('error-input');
+    } 
+    else if (!validateUserId(userId)) {
         userIdError.text("Invalid. User ID should contain only numeric characters!");
         userIdField.addClass('error-input');
     } else {
@@ -118,7 +122,12 @@ function validatePasswordField(passwordField) {
     if (password === '') {
         passwordError.text("Password is required!");
         passwordField.addClass('error-input');
-    } else if (!validatePassword(password)) {
+    }
+    else if(password.length < 8){
+        passwordError.text('Password is too short!');
+        passwordField.addClass('error-input');
+    }
+    else if (!validatePassword(password)) {
         passwordError.text('Password must contain uppercase, lowercase, numeric, and special characters.');
         passwordField.addClass('error-input');
     } else {
