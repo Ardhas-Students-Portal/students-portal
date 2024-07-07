@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Data</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <style>
+    .chead {
+      background-color: blue;
+      color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .actions-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      margin-bottom: 10px;
+    }
+
+    .search-bar .input-group-text {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .search-bar input[type="text"] {
+      flex: 1;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .actions-container .btn {
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chead">
+    <h2>Students Data</h2>
+  </div>
+  <div class="container">
+    <div class="actions-container">
+      <div class="search-bar me-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+          </div>
+          <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
+        </div>
+      </div>
+      <button class="btn btn-secondary add-marks-button" onclick="window.location.href='addmarks.php'">
+        <i class="bi bi-plus-square-fill"></i>
+        <span>Add Marks</span>
+      </button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Roll Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+          <tr id="row-1">
+            <th scope="row"><a href="#!" onclick="scrollToRow(1)">1</a></th>
+            <td>Lavanya</td>
+            <td>Female</td>
+            <td>6789901234</td>
+            <td>Coimbatore</td>
+          </tr>
+          <tr id="row-2">
+            <th scope="row"><a href="#!" onclick="scrollToRow(2)">2</a></th>
+            <td>Ravi</td>
+            <td>Male</td>
+            <td>9876543210</td>
+            <td>Chennai</td>
+          </tr>
+          <!-- Add more student rows here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const searchValue = this.value.trim().toLowerCase();
+      const rows = document.querySelectorAll('#studentTable tr');
+      let found = false;
+
+      rows.forEach(row => {
+        const rollNumber = row.querySelector('th').textContent.trim().toLowerCase();
+        if (rollNumber.includes(searchValue) && searchValue !== "") {
+          row.style.display = '';
+          found = true;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (!found && searchValue !== "") {
+        alert("No matching roll number found.");
+      }
+
+      if (searchValue === "") {
+        rows.forEach(row => {
+          row.style.display = '';
+        });
+      }
+    });
+
+    function scrollToRow(rollNumber) {
+      const row = document.getElementById(`row-${rollNumber}`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth' });
+        row.classList.add('highlight');
+        setTimeout(() => row.classList.remove('highlight'), 2000);
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-wh6qD2E8YedfrQZlL58/zodX1dpmFf1F5LwA2bnxmsYm6pbrYzMzKE5vzxTleIGT" crossorigin="anonymous"></script>
+</body>
+
+</html>
