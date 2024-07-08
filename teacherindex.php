@@ -56,7 +56,6 @@
       width: 250px;
       position: fixed;
       height: 100%;
-      
       padding-top: 20px;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
@@ -101,6 +100,18 @@
 </head>
 
 <body>
+  <?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "ardhas_student_db";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) {
+      die("Connection error: " . $conn->connect_error);
+  }
+  $sql = "SELECT  registernumber, name, class,  gender, parentnumber,  address FROM studentdata";
+  $result = $conn->query($sql);
+  ?>
   <div class="chead">
     <h2>Students Data</h2>
   </div>
@@ -138,28 +149,31 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Roll Number</th>
+              <th scope="col">Register Number</th>
               <th scope="col">Name</th>
+              <th scope="col">Class</th>
               <th scope="col">Gender</th>
-              <th scope="col">Phone Number</th>
+              <th scope="col">Parent Number</th>
               <th scope="col">Address</th>
             </tr>
           </thead>
           <tbody id="studentTable">
-            <tr id="row-1">
-              <th scope="row"><a href="#!" onclick="scrollToRow(1)">1</a></th>
-              <td>Lavanya</td>
-              <td>Female</td>
-              <td>6789901234</td>
-              <td>Coimbatore</td>
-            </tr>
-            <tr id="row-2">
-              <th scope="row"><a href="#!" onclick="scrollToRow(2)">2</a></th>
-              <td>Ravi</td>
-              <td>Male</td>
-              <td>9876543210</td>
-              <td>Chennai</td>
-            </tr>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row["registernumber"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["class"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["gender"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["parentnumber"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["address"]) . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
+            }
+            ?>
           </tbody>
         </table>
       </div>
@@ -173,7 +187,7 @@
       let found = false;
 
       rows.forEach(row => {
-        const rollNumber = row.querySelector('th').textContent.trim().toLowerCase();
+        const rollNumber = row.querySelector('td:first-child').textContent.trim().toLowerCase();
         if (rollNumber.includes(searchValue) && searchValue !== "") {
           row.style.display = '';
           found = true;
@@ -208,3 +222,6 @@
 </body>
 
 </html>
+<?php
+$conn->close();
+?>
