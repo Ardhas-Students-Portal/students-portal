@@ -37,16 +37,28 @@
                     <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z\s]+">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="class">Exam</label>
-                <select class="form-control" id="class" name="class" required>
-                    <option value="">Select Exam</option>
-                    <option value="Quarterly Exam">Quarterly Exam</option>
-                    <option value="Halfyearly Exam">Halfyearly Exam</option>
-                    <option value="Annual Exam">Annual Exam</option>
-                    
-                </select>
-            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="exam">Exam</label>
+                    <select class="form-control" id="exam" name="exam" required>
+                        <option value="">Select Exam</option>
+                        <option value="Quarterly Exam">Quarterly Exam</option>
+                        <option value="Halfyearly Exam">Halfyearly Exam</option>
+                        <option value="Annual Exam">Annual Exam</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="class">Select Class</label>
+                    <select class="form-control" id="class" name="class" required>
+                        <option value="">Select Class</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>      
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="tamil">Tamil</label>
@@ -77,15 +89,28 @@
                     <input type="number" class="form-control subject-mark" id="socialScience" name="socialScience" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="totalMarks">Total Marks</label>
-                <input type="number" class="form-control" id="totalMarks" name="totalMarks" readonly>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="totalMarks">Total Marks</label>
+                    <input type="number" class="form-control" id="totalMarks" name="totalMarks" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="totalpercentage">Total Percentage</label>
+                    <input type="number" class="form-control" id="totalpercentage" name="totalpercentage" readonly>
+                  
+                </div>
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
+</div>
+
+                </tbody>
+            </table>
+        </div>
     </div>
+    
 
     <script>
         $(document).ready(function() {
@@ -104,36 +129,43 @@
                         required: true,
                         alpha: true
                     },
+                    exam: "required",
                     class: "required",
                     tamil: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     },
                     english: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     },
                     hindi: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     },
                     maths: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     },
                     science: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     },
                     socialScience: {
                         required: true,
                         number: true,
-                        min: 0
+                        min: 0,
+                        max: 100
                     }
                 },
                 messages: {
@@ -146,35 +178,42 @@
                         alpha: "Please enter only alphabets and spaces"
                     },
                     class: "Please select a class",
+                    exam: "Please select a exam",
                     tamil: {
                         required: "Please enter marks for Tamil",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     },
                     english: {
                         required: "Please enter marks for English",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     },
                     hindi: {
                         required: "Please enter marks for Hindi",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     },
                     maths: {
                         required: "Please enter marks for Maths",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     },
                     science: {
                         required: "Please enter marks for Science",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     },
                     socialScience: {
                         required: "Please enter marks for Social Science",
                         number: "Please enter a valid number",
-                        min: "Marks cannot be negative"
+                        min: "Marks cannot be negative",
+                        max: "Marks cannot be more than 100"
                     }
                 },
                 errorElement: 'div',
@@ -191,18 +230,21 @@
             });
 
             function calculateTotal() {
-                let total = 0;
-                $('.subject-mark').each(function() {
-                    let value = $(this).val();
-                    total += parseFloat(value) || 0;
-                });
-                $('#totalMarks').val(total);
-            }
-
-            $('.subject-mark').on('input', function() {
-                calculateTotal();
+            let total = 0;
+            $('.subject-mark').each(function() {
+                let value = $(this).val();
+                total += parseFloat(value) || 0;
             });
+            $('#totalMarks').val(total);
+            let percentage = (total / 600) * 100;
+            $('#totalpercentage').val(percentage.toFixed(2));
+        }
+
+        $('.subject-mark').on('input', function() {
+            calculateTotal();
         });
+    });
+    
     </script>
 </body>
 </html>

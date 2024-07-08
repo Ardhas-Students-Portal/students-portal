@@ -28,5 +28,8 @@ session_start();
     <div class="container mt-5">
         <p>Thank you, <?php echo htmlspecialchars($_SESSION['name']); ?> marks are added successfully.</p>
     </div>
+    <div class="container mt-5">
+    <a href="viewmarks.php" class="btn btn-primary">View Marks</a>
+    </div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 $servername = "localhost";
-$username = "root"; // Use your database username
-$password = ""; // Use your database password
+$username = "root"; 
+$password = ""; 
 $dbname = "ardhas_student_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rollNo = intval($_POST['rollNo']);
     $name = $_POST['name'];
     $class = $_POST['class'];
+    $exam = $_POST['exam'];
     $tamil = intval($_POST['tamil']);
     $english = intval($_POST['english']);
     $hindi = intval($_POST['hindi']);
@@ -22,9 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $science = intval($_POST['science']);
     $socialScience = intval($_POST['socialScience']);
     $totalMarks = intval($_POST['totalMarks']);
+    $totalpercentage= intval($_POST['totalpercentage']);
 
-    $stmt = $conn->prepare("INSERT INTO student_marks (roll_no, name, class, tamil, english, hindi, maths, science, social_science, total_marks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issiiiiiii", $rollNo, $name, $class, $tamil, $english, $hindi, $maths, $science, $socialScience, $totalMarks);
+    $stmt = $conn->prepare("INSERT INTO student_marks (roll_no, name, class,exam, tamil, english, hindi, maths, science, social_science, total_marks, totalpercentage) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssiiiiiiii", $rollNo, $name, $class,$exam, $tamil, $english, $hindi, $maths, $science, $socialScience, $totalMarks, $totalpercentage);
 
     if ($stmt->execute()) {
         $_SESSION['rollNo'] = $rollNo;
