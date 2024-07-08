@@ -51,6 +51,52 @@
     .highlight {
       background-color: yellow;
     }
+
+    .sidebar {
+      width: 250px;
+      position: fixed;
+      height: 100%;
+      
+      padding-top: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: rgb(19, 18, 18);
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+    }
+
+    .teacher-info {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: x-large;
+      color: rgb(6, 6, 6);
+    }
+
+    .teacher-info img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 
@@ -58,51 +104,65 @@
   <div class="chead">
     <h2>Students Data</h2>
   </div>
-  <div class="container">
-    <div class="actions-container">
-      <div class="search-bar me-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-          </div>
-          <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
-        </div>
-      </div>
-      <button class="btn btn-secondary add-marks-button" onclick="window.location.href='addmarks.php'">
-        <i class="bi bi-plus-square-fill"></i>
-        <span>Add Marks</span>
-      </button>
+  <div class="sidebar">
+    <div class="teacher-info">
+      <img src="https://img.freepik.com/premium-vector/school-girl-cartoon-round-icon-vector-illustration-schoolgirl-glasses_1142-66572.jpg" alt="Teacher">
+      <div>Dashboard</div>
     </div>
+    <nav class="nav flex-column">
+      <a href="#view-students"><i class="bi bi-people-fill"></i> View Students</a>
+      <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
+      <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
+      <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
+    </nav>
+  </div>
 
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Roll Number</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Address</th>
-          </tr>
-        </thead>
-        <tbody id="studentTable">
-          <tr id="row-1">
-            <th scope="row"><a href="#!" onclick="scrollToRow(1)">1</a></th>
-            <td>Lavanya</td>
-            <td>Female</td>
-            <td>6789901234</td>
-            <td>Coimbatore</td>
-          </tr>
-          <tr id="row-2">
-            <th scope="row"><a href="#!" onclick="scrollToRow(2)">2</a></th>
-            <td>Ravi</td>
-            <td>Male</td>
-            <td>9876543210</td>
-            <td>Chennai</td>
-          </tr>
-          <!-- Add more student rows here -->
-        </tbody>
-      </table>
+  <div class="main-content">
+    <div class="container">
+      <div class="actions-container">
+        <div class="search-bar me-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+            <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
+          </div>
+        </div>
+        <button class="btn btn-secondary add-marks-button" onclick="window.location.href='addmarks.php'">
+          <i class="bi bi-plus-square-fill"></i>
+          <span>Add Marks</span>
+        </button>
+      </div>
+
+      <div id="view-students" class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Address</th>
+            </tr>
+          </thead>
+          <tbody id="studentTable">
+            <tr id="row-1">
+              <th scope="row"><a href="#!" onclick="scrollToRow(1)">1</a></th>
+              <td>Lavanya</td>
+              <td>Female</td>
+              <td>6789901234</td>
+              <td>Coimbatore</td>
+            </tr>
+            <tr id="row-2">
+              <th scope="row"><a href="#!" onclick="scrollToRow(2)">2</a></th>
+              <td>Ravi</td>
+              <td>Male</td>
+              <td>9876543210</td>
+              <td>Chennai</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
