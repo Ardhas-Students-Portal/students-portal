@@ -13,14 +13,7 @@
 
 <body>
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "ardhas_student_db";
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  if ($conn->connect_error) {
-      die("Connection error: " . $conn->connect_error);
-  }
+    include('dbconnect.php');
   $sql = "SELECT  registernumber, name, class,  gender, parentnumber,  address FROM studentdata";
   $result = $conn->query($sql);
   ?>

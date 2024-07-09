@@ -1,8 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "ardhas_student_db");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('dbconnect.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $id = $_GET['id'];
