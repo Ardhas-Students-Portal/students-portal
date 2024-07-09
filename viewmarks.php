@@ -22,18 +22,7 @@
     </style>
 </head>
 <body>
-<div class="sidebar">
-    <div class="teacher-info">
-      <img src="https://img.freepik.com/premium-vector/school-girl-cartoon-round-icon-vector-illustration-schoolgirl-glasses_1142-66572.jpg" alt="Teacher">
-      <div>Bharathi Dashboard</div>
-    </div>
-    <nav class="nav flex-column">
-      <a href="#view-students"><i class="bi bi-people-fill"></i> View Students</a>
-      <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
-      <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
-      <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
-    </nav>
-  </div>
+
   <div class="chead">
     <h2>Students Data</h2>
   </div>
