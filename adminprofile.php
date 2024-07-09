@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('dbconnect.php');
-$userid = $_GET['userid'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userid = $_SESSION['userid'];
     $name = $_POST['name'];
@@ -33,11 +32,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        h3{
+            text-align: center;
+            font-size: 20px;
+        }
+        #form{
+            padding: 30px;
+            margin: 20px;
+            background-color: white;
+            width:70%;
+            border-radius: 8px;
+        }
+        #container{
+           
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #submitbutton{
+            margin-top: 10px;
+            width: 50%;
+        }
+        .error{
+            color: red;
+        }
+    </style>
 </head>
-
 <body>
     <div class="main-container d-flex">
         <div class="sidebar" id="side_nav">

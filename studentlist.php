@@ -50,11 +50,14 @@
         .highlight {
             background-color: yellow;
         }
+        #container{
+            padding: 35px 40px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="main-container d-flex pt-4">
+    <div class="main-container d-flex">
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
