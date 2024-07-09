@@ -36,12 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($role == $role_db) {
                 if ($role == 'admin') {
                     if (isset($_POST['remember'])) {
-                        $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: admincontent.php');
+                    header("Location: admincontent.php?userid=$userId");
                 } else if ($role == 'student') {
                     if (isset($_POST['remember'])) {
                         $_SESSION['userid'] = $userId;
@@ -49,15 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: studentdashboard.php');
+                    header("Location: studentdashboard.php?userid=$userId");
                 } else {
                     if (isset($_POST['remember'])) {
-                        $_SESSION['userid'] = $userId;
+                        // $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: teacherindex.php');
+                    header("Location: teacherindex.php?userid=$userId");
                 }
             } else {
                $_SESSION['error-message'] = 'Role mismatch';

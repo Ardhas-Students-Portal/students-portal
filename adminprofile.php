@@ -1,7 +1,7 @@
 <?php
 session_start();
-$adminid =  $_SESSION['userId'];
 include('dbconnect.php');
+$userid = $_GET['userid'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userid = $_SESSION['userid'];
     $name = $_POST['name'];
