@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="col-md-6">
                 <h3 class="text-center">Hello, Again</h3>
-                <p class="text-center">We are happy to back!</p>
+                <p class="text-center">We are happy to be back!</p>
                 <form id="loginForm" action="login.php" method="post">
                     <div class="position-relative">
                         <label for="exampleInputEmail1" class="form-label">User ID</label>

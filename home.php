@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARDHAS SCHOOL</title>
     <link rel="stylesheet" href="style.css">
-
+   
 </head>
 <style>
 
@@ -96,14 +96,14 @@
             font-size: 1.1rem;
             color: #666;
         }
-
+     
 
     </style>
 
 <body>
     
     <?php 
-    include("header.php");
+    include("homeheader.php");
 
      ?>
 
@@ -158,13 +158,13 @@
 <!-- body content -->
 
 <!-- our services -->
-<div class="categories text-black">
+<div class="categories text-black" id="services">
   <div class="catergories-name">
    <div class="cat"><h3>SERVICES</h3>
    <p>What we do?</p></div>
   </div>
   <div class="mes-caption"><p>Explore from the best choosen for your children</p></div>
-</div>
+
 
 
 
@@ -263,20 +263,20 @@
     </div>
 </div>
 
+    </div>
 
 <!-- why us -->
 
-<div class="categories text-black">
+<div class="categories text-black" id="about">
   <div class="catergories-name">
    <div class="cat"><h3>ABOUT</h3>
-   <p>What us?</p></div>
+   <p>Why us?</p></div>
   </div>
   <div class="mes-caption"><p>Explore what we assure for your children</p></div>
-</div>
+
 
 
 <div class="container">
-    <h1 class="text-center mb-4">School Portal</h1>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
@@ -360,10 +360,116 @@
     </div>
 
 </div>
+
+    </div>
+<!-- contact form -->
+<div class="categories text-black" id="contact">
+  <div class="catergories-name">
+   <div class="cat"><h3>CONTACT</h3>
+   <p>Any queries?</p></div>
+  </div>
+  <div class="mes-caption"><p>Feel free to ask anything</p></div>
+
+
+
+
+  <div class="container" style="display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 100vh;">
+    <div class="cards" style="width: 100%;
+      max-width: 600px;
+      padding: 60px;
+      backgroud-color:#fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);border-radius:30px;">
+<form id="contactForm" action="contact_form.php" method="POST" class="text-black">
+<h4 class="mb-4">Your Message</h4>
+        <div class="form-group mb-3">
+          <label for="fname" class="d-flex justify-content-start">Name</label>
+          <input type="text" class="form-control" id="fname" name="firstname" minlength=2 placeholder="Enter your name" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email" class="d-flex justify-content-start">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message" class="d-flex justify-content-start">Message</label>
+          <textarea class="form-control" id="message" name="message" placeholder="Write your query" style="height:100px" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+ 
+  <script>
+    $(document).ready(function() {
+      $("#contactForm").validate({
+        rules: {
+          firstname: {
+            required: true,
+            minlength: 2
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          message: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          firstname: {
+            required: "Please enter your name",
+            minlength: "Your name must consist of at least 3 characters"
+          },
+          email: {
+            required: "Please enter your email",
+            email: "Please enter a valid email address"
+          },
+          message: {
+            required: "Please enter a message",
+            minlength: "Your message must be at least 5 characters long"
+          }
+        },
+        // errorElement: "em",
+        // errorPlacement: function (error, element) {
+        //   error.addClass("invalid-feedback");
+
+        //   if (element.prop("type") === "checkbox") {
+        //     error.insertAfter(element.next("label"));
+        //   } else {
+        //     error.insertAfter(element);
+        //   }
+        // },
+        // highlight: function (element, errorClass, validClass) {
+        //   $(element).addClass("is-invalid").removeClass("is-valid");
+        // },
+        // unhighlight: function (element, errorClass, validClass) {
+        //   $(element).addClass("is-valid").removeClass("is-invalid");
+        // }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
 <!-- gallery -->
- <div class="slider">
-    
- </div>
+<div class="categories text-black" id="gallery">
+  <div class="catergories-name">
+   <div class="cat"><h3>GALLERY</h3>
+   <p>Join with us</p></div>
+  </div>
+  <div class="mes-caption"><p>Moments we cherish</p></div></div>
 
 <!-- footer file -->
 <?php 
