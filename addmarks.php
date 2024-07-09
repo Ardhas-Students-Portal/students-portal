@@ -7,23 +7,32 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
         .row > .col-md-6 {
             padding-bottom: 15px;
         }
-        .chead {
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+        
     </style>
 </head>
 <body>
-<div class="chead">
-<h2>Student Mark Entry Form</h2>
+
+<div class="sidebar">
+    <div class="teacher-info">
+      <img src="https://img.freepik.com/premium-vector/school-girl-cartoon-round-icon-vector-illustration-schoolgirl-glasses_1142-66572.jpg" alt="Teacher">
+      <div>Bharathi Dashboard</div>
+    </div>
+    <nav class="nav flex-column">
+      <a href="#view-students"><i class="bi bi-people-fill"></i> View Students</a>
+      <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
+      <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
+      <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
+    </nav>
   </div>
+  <div class="chead">
+    <h2>Students Data</h2>
+  </div>
+  <button class="bi bi-list d-lg-none" type="button" data-bs-toggle="collapse" onclick="toggleSidebar()" ></button>
     <div class="container mt-5">
         
         <form id="markEntryForm" action="studentmark.php" method="post">
@@ -110,7 +119,7 @@
             </table>
         </div>
     </div>
-    
+    </div>   
 
     <script>
         $(document).ready(function() {
