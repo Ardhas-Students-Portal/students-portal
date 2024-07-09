@@ -36,12 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($role == $role_db) {
                 if ($role == 'admin') {
                     if (isset($_POST['remember'])) {
-                        $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: admincontent.php');
+                    header("Location: admincontent.php?userid=$userId");
                 } else if ($role == 'student') {
                     if (isset($_POST['remember'])) {
                         $_SESSION['userid'] = $userId;
@@ -49,15 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: studentdashboard.php');
+                    header("Location: studentdashboard.php?userid=$userId");
                 } else {
                     if (isset($_POST['remember'])) {
-                        $_SESSION['userid'] = $userId;
+                        // $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: teacherindex.php');
+                    header("Location: teacherindex.php?userid=$userId");
                 }
             } else {
                $_SESSION['error-message'] = 'Role mismatch';
@@ -120,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="col-md-6">
                 <h3 class="text-center">Hello, Again</h3>
-                <p class="text-center">We are happy to back!</p>
+                <p class="text-center">We are happy to be back!</p>
                 <form id="loginForm" action="login.php" method="post">
                     <div class="position-relative">
                         <label for="exampleInputEmail1" class="form-label">User ID</label>
