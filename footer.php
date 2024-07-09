@@ -35,7 +35,7 @@
         text-decoration: none;
       }
       .fa-brands a{
-        font-size:25px;
+        font-size:30px;
 
       }
       .footer-links a:hover {
@@ -55,7 +55,10 @@
             <div class="logo d-flex">
             <img src="assets/images/logo.png" style="width:35px;height:35px;">
             <h2>ARDHAS SCHOOL</h2></div>
-            <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam repellat, quos asperiores fugit illo quibusdam accusantium fugiat quaerat consequuntur corporis laborum corrupti, inventore provident error? Omnis vel harum atque! Mollitia!</P>
+            <p> 
+            We are committed to fostering personal growth by 
+                             supporting the holistic development of our students—intellectually, socially, emotionally, and
+                              physically—instilling values of honesty, integrity, respect, and responsibility. </p>
           </div>
 
           
@@ -67,8 +70,8 @@
               <li>Email: ardhasschool@gmail.com</li>
               <li>Phone: 8821577749</li>
               <li>Address: Chill Sez IT Park, Coimbatore</li>
-            </ul>
-            <div class="col-md-6">
+            </ul></div>
+            <div class="col-md-3">
             <h5>FOLLOW US ON</h5>
             <ul class="list-inline footer-links">
               <li class="list-inline-item">
@@ -91,7 +94,7 @@
                 <i class="fa-brands fa-whatsapp"></i>  </a>            
               </li>
             </ul>
-          </div>
+       
 
 
 
