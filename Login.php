@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "SELECT * FROM user WHERE userId = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, 'i', $userId);
+    mysqli_stmt_bind_param($stmt, 's', $userId);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
@@ -27,10 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['error-message'] = 'User does not exist';
         header('Location: login.php');
         exit();
-        exit();
     } else {
         $user = mysqli_fetch_assoc($result);
-        if ($user['Userid'] == $userId && $user['Password'] == $password) {
+        if ($user['Userid'] == $userId && password_verify($password, $user['Password'])) {
             $_SESSION['role'] = $role;
             $_SESSION['userId'] = $userId;
             $role_db = $user['Role'];
@@ -41,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: admindashboard.php');
+                    header('Location: admincontent.php');
                 } else if ($role == 'student') {
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
@@ -70,8 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

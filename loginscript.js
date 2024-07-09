@@ -101,7 +101,7 @@ function validateUserIdField(userIdField) {
     if (userId === '') {
         userIdError.text("User ID is required!");
         userIdField.addClass('error-input');
-    }else if(userId.length < 4){
+    }else if(userId.length < 3){
         userIdError.text("UserId contains minimum four Numbers!")
         userIdField.addClass('error-input');
     } 
