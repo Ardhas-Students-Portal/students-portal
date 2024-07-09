@@ -60,7 +60,7 @@
         </div>
         <div class="content flex-grow-1">
             <?php include('header.php')?>
-            <div class="container mx-">
+            <div class="container ml-4 mr-4">
                 <div class="search-bar my-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
