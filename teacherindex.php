@@ -68,6 +68,7 @@
       <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
       <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
       <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
+      <a href="student_logout.php"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
     </nav>
   </div>
   <div class="chead">
