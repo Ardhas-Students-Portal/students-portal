@@ -14,55 +14,68 @@
 
 </head>
 <style>
- .navbar-scrolled{
+ .navbar-scrolled, .offcanvas-body{
     background-color:#000;
+}
+.navbar-toggler-icon{
+
+  background-color:#fff;
 }
 
         .dropdown-menu {
-            z-index: 1000; /* Ensure dropdown menu appears above everything else */
+            z-index: 1000; 
         }
 </style>
 <body class="vh-100 over-flow-hidden">
     <nav class="navbar navbar-expand-lg fixed-top border-bottom navbar-scrolled">
-        <div class="container">
-          <a class="navbar-brand text-white" href="#" style="font-weight: bold;">ARDHAS SCHOOL</a>
-          <button class="navbar-toggler text-black" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon text-black"></span>
+        <div class="container">                 <div class="d-flex">
+        <img src="assets/images/logo.png" style="width:40px;height:40px;">
+
+          <a class="navbar-brand text-white" href="#" style="font-weight: bold;">ARDHAS SCHOOL</a></div>
+          <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="offcanvas offcanvas-end text-black" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header text-black border-bottom">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ARDHASS SCHOOL</h5>
+          <div class="offcanvas offcanvas-end" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header border-bottom">
+              <div class="d-flex">
+              <img src="assets/images/logo.png" style="width:40px;height:40px;">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ARDHAS SCHOOL</h5></div>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 text-black">
                 <li class="nav-item">
                   <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link active text-white"  href="#">Services</a>
+                    <a class="nav-link active text-white"  href="#services">Services</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active text-white" href="#">Contact</a>
+                    <a class="nav-link active text-white"  href="#about">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-white" href="#contact">Contact</a>
                   </li>
 
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link active text-white" href="#gallery">
                     Gallery
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <!-- <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
+
+                  <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Alumini Meet</a></li>
                     <li><a class="dropdown-item" href="#">Annual Day</a></li>
                     <li><a class="dropdown-item" href="#">Sports Day</a></li>
                     <li><a class="dropdown-item" href="#">Celebrations</a></li>
 
                     
-                  </ul>
+                  </ul> -->
                 </li>
             </ul>
                   <div class="d-flex justify-content-center align-items-center gap-3">
-                    <a href="#" class=" btn btn-primary text-decoration-none px-3 py-1 rounded-2">LOGIN</a>
+                    <a href="Login.php" class=" btn btn-primary text-decoration-none px-3 py-1 rounded-2">LOGIN</a>
                   </div>
 
                
