@@ -1,11 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "ardhas_student_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include('dbconnect.php');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
