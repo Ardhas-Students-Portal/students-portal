@@ -10,6 +10,29 @@ $(document).ready(function(){
     $('#address-valid').css("font-size","13px");
     $('#subject-error').css("font-size","13px");
     
+
+    function validateName() {
+        var name = $('#name').val().trim();
+        var nameRegex = /^[a-zA-Z ]{2,30}$/; 
+       if (!nameRegex.test(name)) {
+            $('#name-valid').text('Name must contain at least 2 letters and only letters,space');
+            $('#name-valid').css("color","red");
+            return false;
+        } else {
+            $('#name-valid').text('valid name');
+            $('#name-valid').css("color","green");
+            return true;
+        }
+    }
+    // Validate on input change
+    $('#name').on('input', function () {
+        validateName();
+    });
+    $('#name').on('blur', function () {
+        if(validateName()){
+            $('#name-valid').text('');
+        }
+    });
     // validate name 
     function validateName() {
         var name = $('#name').val().trim();
@@ -194,6 +217,20 @@ $(document).ready(function(){
     $('form').on('submit',function(){
         // event.preventDefault();
         var validation = true;
+
+        var id = $('#userid').val().trim();
+        if(id == ''){
+            $('#id-valid').text('Please enter ID');
+            $('#id-valid').css("color","red");
+        }
+        else if(!validateID()){
+            validation = false;
+            $('#id-valid').text('userID must contain atleast 3 numbers and maximum 4'); 
+
+        }else{
+            $('#id-valid').text(''); 
+            // validation = true;
+        }
         // name validation
         var name = $('#name').val().trim();
         if(name == ''){

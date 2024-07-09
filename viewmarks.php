@@ -53,10 +53,7 @@
                     <tbody>
                         <!-- PHP code to fetch and display records -->
                         <?php
-                        $conn = new mysqli("localhost", "root", "", "ardhas_student_db");
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        include('dbconnect.php');
 
                         $sql = "SELECT * FROM student_marks";
                         $result = $conn->query($sql);
