@@ -70,7 +70,7 @@
                     <button class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped mt-3 mb-5 mx-auto">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
