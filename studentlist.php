@@ -50,6 +50,9 @@
         .highlight {
             background-color: yellow;
         }
+        #container{
+            padding: 25px 30px;
+        }
     </style>
 </head>
 
@@ -60,7 +63,7 @@
         </div>
         <div class="content flex-grow-1">
             <?php include('header.php')?>
-            <div class="container ml-4 mr-4">
+            <div class="container" id="container">
                 <div class="search-bar my-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
