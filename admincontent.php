@@ -16,7 +16,7 @@
             <?php include('admindashboard.php') ?>
         </div>
         <div class="content flex-grow-1">
-            <?php include('header.php') ?>
+            <?php include('adminheader.php') ?>
             <div class="container d-flex gap-3 flex-wrap justify-content-center mt-5 justify-content-md-start   ">
                 <div class="card" style="width: 20rem;">
                     <img src="./images/Data_security_05.jpg" class="card-img-top" alt="registraion image" width="200" height="250">

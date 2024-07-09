@@ -44,14 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php include('admindashboard.php') ?>
         </div>
         <div class="content">
-            <?php include('header.php'); ?>
+            <?php include('adminheader.php'); ?>
             <div class="container d-flex justify-content-center">
                 <div class="dashboard-content  m-3 col-10 col-md-6">
                     <form class="row d-flex" method="post" action="adminprofile.php">
                         <h3 class="text-center pt-3">Profile Update</h3>
                         <div class="mb-1 col-10">
                             <label for="exampleFormControlInput1" class="form-label">UserId</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" disabled placeholder="userId" name="userid" value="<?php echo $adminid ?>">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" disabled placeholder="userId" name="userid" value="<?php echo $userid ?>">
                         </div>
                         <div class="mb-1 col-10">
                             <label for="exampleFormControlInput2" class="form-label">Name</label>

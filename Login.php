@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header("Location: admincontent.php?userid=$userId");
+                    header("Location: adminprofile.php?userid=$userId");
                 } else if ($role == 'student') {
                     if (isset($_POST['remember'])) {
                         $_SESSION['userid'] = $userId;

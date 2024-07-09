@@ -59,7 +59,7 @@
             <?php include('admindashboard.php') ?>
         </div>
         <div class="content flex-grow-1">
-            <?php include('header.php')?>
+            <?php include('adminheader.php')?>
             <div class="container">
             <div class="search-bar my-2">
                 <div class="input-group">
