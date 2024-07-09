@@ -126,15 +126,17 @@
     <div class="carousel-item">
       <img src="assets/images/carousel1can.png" class="d-block w-100" alt="..." style="max-height: 720px;"> 
       <div class="carousel-caption d-none d-md-block">
-      <h1 class=" front-content">Your <span style="color: red;font-weight: lighter;">Inspiration</span><br><span style="font-weight: lighter;"> Partner for </span><span>Growth.</span></h1>
-      <p>Some representative placeholder content for the second slide.</p>
+      <h1 class=" front-content">Your <span style="color:#ffff;font-weight: bolder;font-size:50px">Presence</span><br><span style="font-weight: lighter;"> Makes Things</span><span> Different.</span></h1>
+      <button type="button" class="btn btn-primary btn-lg">Class Rooms</button>
+
       </div>
     </div>
     <div class="carousel-item">
       <img src="assets/images/carousel3.png" class="d-block w-100" alt="..." style="max-height: 720px;">
       <div class="carousel-caption d-none d-md-block">
-      <h1 class="front-content">Your <span style="color: red;font-weight: lighter;">Inspiration</span><br><span style="font-weight: lighter;"> Partner for </span><span>Growth.</span></h1>
-      <p>Some representative placeholder content for the third slide.</p>
+      <h1 class="front-content">For <span style="color:#ffff;font-weight: bolder;font-size:50px;">Future</span><br><span style="font-weight: lighter;"> Leader to Enhancing </span><span> the Development.</span></h1>
+      <button type="button" class="btn btn-primary btn-lg">Library</button>
+
       </div>
     </div>
   </div>
