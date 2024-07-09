@@ -54,7 +54,7 @@
 </head>
 
 <body>
-    <div class="main-container d-flex">
+    <div class="main-container d-flex pt-4">
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
@@ -73,7 +73,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">SI.NO</th>
                         <th scope="col">Name</th>
                         <th scope="col">Register number</th>
                         <th scope="col">Class</th>
@@ -90,7 +89,6 @@
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row['id'];
                             $name = $row['name'];
                             $regno = $row['registernumber'];
                             $class = $row['class'];
@@ -100,8 +98,7 @@
                             $address = $row['address'];
 
                             echo '<tr>
-                            <th scope="row">' . $id . '</th>
-                            <td>' . $name . '</td>
+                            <td  scope="row">' . $name . '</td>
                             <td>' . $regno . '</td>
                             <td>' . $class . '</td>
                             <td>' . $dateofbirth . '</td>
@@ -129,7 +126,7 @@
                 if (td) {
                     var txtValue = td.textContent || td.innerText;
                     if (txtValue.toLowerCase().indexOf(input) > -1) {
-                        tr[i].style.display = '';
+                        tr[i].style.display = 'No data found';
                     } else {
                         tr[i].style.display = 'none';
                     }

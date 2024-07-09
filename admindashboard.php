@@ -26,14 +26,12 @@
             <ul class="list-unstyled px-2">
                 <li class="<?= ($current_page == 'admincontent.php') ? 'active' : '' ?>"><a href="admincontent.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-house pe-2"></i>Dashboard</a></li>
                 <li class="<?= ($current_page == 'adminprofile.php') ? 'active' : '' ?>"><a href="adminprofile.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
-                <li class="<?= ($current_page == 'teacher.php') ? 'active' : '' ?>"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Teacher</a></li>
+                <li class="<?= ($current_page == 'teacher.php') ? 'active' : '' ?>"><a href="" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Teacher</a></li>
                 <li class="<?= ($current_page == 'student.php') ? 'active' : '' ?>"><a href="studentlist.php" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Student</a></li>
-                <li class="<?= ($current_page == 'upcomingevents.php') ? 'active' : '' ?>"><a href="admincontent.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-calendar-event pe-2"></i>Upcoming Events</a></li>
             </ul>
             <hr class="h-color mx-2">
         </div>
         <div class="content p-4">
-            <!-- Your main content here -->
         </div>
     </div>
 
