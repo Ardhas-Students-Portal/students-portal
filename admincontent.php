@@ -34,7 +34,7 @@
                         <h5 class="card-title">Student Registration</h5>
                         <p class="card-text">Please press the below button to register the Student</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-primary">Register</a>
+                            <a href="student_registration.php" class="btn btn-primary">Register</a>
                         </div>
                     </div>
                 </div>
