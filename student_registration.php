@@ -297,7 +297,7 @@ hr.h-color {
                             <label for="teacher">Assign Teacher</label>
                             <select class="form-control" id="teacher" name="teacher">
                                 <option value="select">Select Teacher</option>
-                                <option value="Bharani">Bharathi</option>
+                                <option value="Bharani">Bharani</option>
                                 <option value="Dhanush">Dhanush</option>
                             </select>
                             <div class="error-message" id="teacher-error">Please select the teacher</div>
