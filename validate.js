@@ -9,28 +9,29 @@ $(document).ready(function(){
     $('#phone-valid').css("font-size","13px");
     $('#address-valid').css("font-size","13px");
     $('#subject-error').css("font-size","13px");
+    $('#id-valid').css("font-size","13px");
     
 
-    function validateName() {
-        var name = $('#name').val().trim();
-        var nameRegex = /^[a-zA-Z ]{2,30}$/; 
-       if (!nameRegex.test(name)) {
-            $('#name-valid').text('Name must contain at least 2 letters and only letters,space');
-            $('#name-valid').css("color","red");
+    function validateID() {
+        var id = $('#userid').val().trim();
+        var idRegex = /^[0-9]{3}$/; 
+       if (!idRegex.test(id)) {
+            $('#id-valid').text('Name must contain only 3 digits');
+            $('#id-valid').css("color","red");
             return false;
         } else {
-            $('#name-valid').text('valid name');
-            $('#name-valid').css("color","green");
+            $('#id-valid').text('valid register number');
+            $('#id-valid').css("color","green");
             return true;
         }
     }
     // Validate on input change
-    $('#name').on('input', function () {
-        validateName();
+    $('#userid').on('input', function () {
+        validateID();
     });
-    $('#name').on('blur', function () {
-        if(validateName()){
-            $('#name-valid').text('');
+    $('#userid').on('blur', function () {
+        if(validateID()){
+            $('#id-valid').text('');
         }
     });
     // validate name 
@@ -214,18 +215,19 @@ $(document).ready(function(){
   
 
     
-    $('form').on('submit',function(){
-        // event.preventDefault();
+    $('form').on('submit',function(event){
+        event.preventDefault();
         var validation = true;
 
         var id = $('#userid').val().trim();
         if(id == ''){
             $('#id-valid').text('Please enter ID');
             $('#id-valid').css("color","red");
+            validation = false;
         }
         else if(!validateID()){
             validation = false;
-            $('#id-valid').text('userID must contain atleast 3 numbers and maximum 4'); 
+            $('#id-valid').text('userID must contain only 3 digits '); 
 
         }else{
             $('#id-valid').text(''); 
@@ -236,6 +238,7 @@ $(document).ready(function(){
         if(name == ''){
             $('#name-valid').text('Please enter full name');
             $('#name-valid').css("color","red");
+            validation = false;
         }
         else if(!validateName()){
             validation = false;
@@ -251,6 +254,7 @@ $(document).ready(function(){
         if(email == ''){
             $('#email-valid').text('Please enter email address');
             $('#email-valid').css("color","red");
+            validation = false;
         }
         else if(!validateEmail()){
             validation = false;
@@ -264,6 +268,7 @@ $(document).ready(function(){
         if(password == ''){
             $('#password-valid').text('Please create password');
             $('#password-valid').css("color","red");
+            validation = false;
         }
         else if(!validatePassword()){
             validation = false;
@@ -278,6 +283,7 @@ $(document).ready(function(){
         if(cnfpwd == ''){
             $('#confirm-password-valid').text('Please Re-enter password');
             $('#confirm-password-valid').css("color","red");
+            validation = false;
         }
         else if(!validateConfirmPassword()){
             validation = false;
@@ -291,6 +297,7 @@ $(document).ready(function(){
         if(dob == ''){
             $('#dob-valid').text('Please enter date of birth');
             $('#dob-valid').css("color","red");
+            validation = false;
         }
         else if(!validateDate()){
             validation = false;
@@ -304,6 +311,7 @@ $(document).ready(function(){
         if(phone == ''){
             $('#phone-valid').text('Please enter phone number');
             $('#phone-valid').css("color","red");
+            validation = false;
         }
         else if(!validatePhone()){
             validation = false;
@@ -317,6 +325,7 @@ $(document).ready(function(){
         if(city == ''){
             $('#address-valid').text('Please enter city');
             $('#address-valid').css("color","red");
+            validation = false;
         }
         else if(!validateCity()){
             validation = false;
@@ -357,6 +366,7 @@ $(document).ready(function(){
             $('#subject-error').text('');
         }
         if(validation == true){
+            this.submit();
             alert("Teacher Registration Completed");
         }
     });

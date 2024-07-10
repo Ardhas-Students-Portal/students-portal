@@ -352,173 +352,143 @@ hr.h-color {
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
     <script>
-        $(document).ready(function() {
-            $('#createpassword-icon').on('click', function() {
-                var passwordInput = $('#createpassword');
-                var icon = $(this);
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.attr('type', 'text');
-                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
-                } else {
-                    passwordInput.attr('type', 'password');
-                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
-                }
-            });
+    $(document).ready(function() {
+        function isValidName(name) {
+            return /^[a-zA-Z]/.test(name);
+        }
 
-            $('#confirmpassword-icon').on('click', function() {
-                var passwordInput = $('#confirmpassword');
-                var icon = $(this);
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.attr('type', 'text');
-                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
-                } else {
-                    passwordInput.attr('type', 'password');
-                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
-                }
-            });
+        function isvalidNumber(registernumber) {
+            return /^[0-9]+$/.test(registernumber);
+        }
 
-            $('#btn').click(function(e) {
-                e.preventDefault();
-                var isValid = true;
-                var name = $('#name').val();
-                var registernumber = $('#registernumber').val();
-                var createpassword = $('#createpassword').val();
-                var confirmpassword = $('#confirmpassword').val();
-                var classname = $('#class').val();
-                var dateofbirth = $('#dateofbirth').val();
-                var gender = $('input[name="gender"]:checked').val();
-                var teacher = $('#teacher').val();
-                var parentnumber = $('#parentnumber').val();
-                var alternatenumber = $('#alternatenumber').val();
-                var address = $('#address').val();
+        function isValidPassword(createpassword) {
+            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/.test(createpassword);
+        }
 
-                function isValidName(name) {
-                    return /^[a-zA-Z]/.test(name);
-                }
+        function isValidPhone(phone) {
+            return phone.length === 10 && !isNaN(phone) && ['9', '8', '7', '6'].includes(phone.charAt(0));
+        }
 
-                function isvalidNumber(registernumber) {
-                    return /^[0-9]+$/.test(registernumber);
-                }
+        function isvalidAddress(address) {
+            return address.length >= 10 && address.length <= 400;
+        }
 
-                function isValidPassword(createpassword) {
-                    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/.test(createpassword);
-                }
+        function isValidClassname(classname) {
+            return /^[a-zA-Z0-9 ]+$/.test(classname);
+        }
 
-                function isValidPhone(phone) {
-                    return phone.length === 10 && !isNaN(phone) && ['9', '8', '7', '6'].includes(phone.charAt(0));
-                }
+        function isValidDOB(dateofbirth) {
+            var today = new Date();
+            var dob = new Date(dateofbirth);
+            return dob.getFullYear() <= (today.getFullYear() - 6);
+        }
 
-                function isvalidAddress(address) {
-                    return address.length >= 10 && address.length <= 400;
-                }
+        function validateInput(input, validationFn, errorElementId) {
+            if (!validationFn(input.val())) {
+                $(errorElementId).show();
+                return false;
+            } else {
+                $(errorElementId).hide();
+                return true;
+            }
+        }
 
-                function isValidClassname(classname) {
-                    return /^[a-zA-Z0-9 ]+$/.test(classname);
-                }
+        function validateForm() {
+            var isValid = true;
+            isValid = validateInput($('#name'), isValidName, '#name-error') && isValid;
+            isValid = validateInput($('#registernumber'), isvalidNumber, '#registernumber-error') && isValid;
+            isValid = validateInput($('#createpassword'), isValidPassword, '#createpassword-error') && isValid;
+            isValid = validateInput($('#class'), isValidClassname, '#class-error') && isValid;
+            isValid = validateInput($('#dateofbirth'), isValidDOB, '#dateofbirth-error') && isValid;
+            isValid = validateInput($('#parentnumber'), isValidPhone, '#parentnumber-error') && isValid;
+            isValid = validateInput($('#alternatenumber'), isValidPhone, '#alternatenumber-error') && isValid;
+            isValid = validateInput($('#address'), isvalidAddress, '#address-error') && isValid;
 
-                function isValidDOB(dateofbirth) {
-                    var today = new Date();
-                    var dob = new Date(dateofbirth);
-                    return dob.getFullYear() <= (today.getFullYear() - 6);
-                }
+            var createpassword = $('#createpassword').val();
+            var confirmpassword = $('#confirmpassword').val();
+            if (createpassword !== confirmpassword) {
+                $('#confirmpassword-error').show();
+                isValid = false;
+            } else {
+                $('#confirmpassword-error').hide();
+            }
 
-                if (!isValidName(name)) {
-                    $('#name-error').show();
-                    isValid = false;
-                } else {
-                    $('#name-error').hide();
-                }
+            var gender = $('input[name="gender"]:checked').val();
+            if (!gender) {
+                $('#gender-error').show();
+                isValid = false;
+            } else {
+                $('#gender-error').hide();
+            }
 
-                if (!isvalidNumber(registernumber)) {
-                    $('#registernumber-error').show();
-                    isValid = false;
-                } else {
-                    $('#registernumber-error').hide();
-                }
+            var teacher = $('#teacher').val();
+            if (teacher === "select") {
+                $('#teacher-error').show();
+                isValid = false;
+            } else {
+                $('#teacher-error').hide();
+            }
 
-                if (!isValidPassword(createpassword)) {
-                    $('#createpassword-error').show();
-                    isValid = false;
-                } else {
-                    $('#createpassword-error').hide();
-                }
+            var parentnumber = $('#parentnumber').val();
+            var alternatenumber = $('#alternatenumber').val();
+            if (parentnumber === alternatenumber) {
+                $('#phone-unique-error').show();
+                isValid = false;
+            } else {
+                $('#phone-unique-error').hide();
+            }
 
-                if (createpassword !== confirmpassword) {
-                    $('#confirmpassword-error').show();
-                    isValid = false;
-                } else {
-                    $('#confirmpassword-error').hide();
-                }
+            return isValid;
+        }
 
-                if (!isValidClassname(classname)) {
-                    $('#class-error').show();
-                    isValid = false;
-                } else {
-                    $('#class-error').hide();
-                }
+        $('input, textarea').on('input', function() {
+            validateForm();
+        });
 
-                if (!isValidDOB(dateofbirth)) {
-                    $('#dateofbirth-error').show();
-                    isValid = false;
-                } else {
-                    $('#dateofbirth-error').hide();
-                }
+        $('input[type=radio], select').on('change', function() {
+            validateForm();
+        });
 
-                if (!gender) {
-                    $('#gender-error').show();
-                    isValid = false;
-                } else {
-                    $('#gender-error').hide();
-                }
+        $('#createpassword-icon').on('click', function() {
+            var passwordInput = $('#createpassword');
+            var icon = $(this);
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                icon.removeClass('bi-eye-slash').addClass('bi-eye');
+            } else {
+                passwordInput.attr('type', 'password');
+                icon.removeClass('bi-eye').addClass('bi-eye-slash');
+            }
+        });
 
-                if (teacher === "select") {
-                    $('#teacher-error').show();
-                    isValid = false;
-                } else {
-                    $('#teacher-error').hide();
-                }
+        $('#confirmpassword-icon').on('click', function() {
+            var passwordInput = $('#confirmpassword');
+            var icon = $(this);
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                icon.removeClass('bi-eye-slash').addClass('bi-eye');
+            } else {
+                passwordInput.attr('type', 'password');
+                icon.removeClass('bi-eye').addClass('bi-eye-slash');
+            }
+        });
 
-                if (!isValidPhone(parentnumber)) {
-                    $('#parentnumber-error').show();
-                    isValid = false;
-                } else {
-                    $('#parentnumber-error').hide();
-                }
-
-                if (!isValidPhone(alternatenumber)) {
-                    $('#alternatenumber-error').show();
-                    isValid = false;
-                } else {
-                    $('#alternatenumber-error').hide();
-                }
-
-                if (parentnumber === alternatenumber) {
-                    $('#phone-unique-error').show();
-                    isValid = false;
-                } else {
-                    $('#phone-unique-error').hide();
-                }
-
-                if (!isvalidAddress(address)) {
-                    $('#address-error').show();
-                    isValid = false;
-                } else {
-                    $('#address-error').hide();
-                }
-
-                if (isValid) {
-                    $('form').submit();
-                    $('#confirmationMessage').show();
-                }
+        $('#btn').click(function(e) {
+            e.preventDefault();
+            if (validateForm()) {
+                $('form').submit();
+                $('#confirmationMessage').show();
                 setTimeout(function() {
                     $('#confirmationMessage').hide();
-                    $('#main')[0].reset();
-                    $('#fileList').empty();
                 }, 6500);
-            });
+            }
         });
-    </script>
+    });
+</script>
 </body>
 
 
