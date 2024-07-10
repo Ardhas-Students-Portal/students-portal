@@ -1,4 +1,16 @@
-<?php 
+<?php
+$name=$_SESSION['name'];
+include('dbconnect.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    if ($result) {
+        $_SESSION['name'] = $name;
+       $_SESSION['error-message'] = 'Profile Updated Successfully!';
+        header('Location: admincontent.php');
+    } else {
+        echo "Error while updating the data!";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +36,7 @@
             <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                 <i class="bi bi-person-circle pe-1"></i>
                 <a class="nav-link active" aria-current="page" href="adminprofile.php" title="You can update the Profile">
-                    Hi Admin 
+                    Hi  <?php echo $name ?>
                 </a>
             </div>
         </div>

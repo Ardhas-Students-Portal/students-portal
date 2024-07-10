@@ -151,7 +151,14 @@
       <img src="assets/images/carousel3cam.png" class="d-block w-100" alt="..." style="max-height: 720px;">
       <div class="carousel-caption d-none d-md-block">
       <h1 class="mt-5 front-content">Your <span style="color: #ffff;font-weight: bolder;font-size:50px">Inspiration</span><br><span style="font-weight: lighter;"> Partner for </span><span>Growth.</span></h1>
-      <button type="button" class="btn btn-primary btn-lg">Admission Opens</button>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+
+<!-- dialog box -->
+
+
+
+
+
       </div>
     </div>
     <div class="carousel-item">
@@ -441,6 +448,7 @@
   <script>
     $(document).ready(function() {
       $("#contactForm").validate({
+      
         rules: {
           firstname: {
             required: true,
@@ -486,6 +494,7 @@
         //   $(element).addClass("is-valid").removeClass("is-invalid");
         // }
       });
+     
     });
   </script>
 
