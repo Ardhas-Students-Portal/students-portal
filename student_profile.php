@@ -1,5 +1,4 @@
 <?php
-// session_start();
 include('dbconnect.php');
 
 if (!isset($_SESSION['userid'])) {
@@ -23,6 +22,7 @@ $stmt->bind_param('s', $number);
 $stmt->execute();
 $result = $stmt->get_result();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +38,10 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>
+   
     <div class="container-fluid m-1">
-        <h1 class="form-header">Profile</h1>
+    <!-- <div class="d-flex justify-content-center flex-row"> -->
+        <h1 class="form-header text-center p-3">Profile</h1>
         <table class="display table table-bordered w-75">
             <thead>
                 <tr>
@@ -51,6 +53,7 @@ $result = $stmt->get_result();
                 <?php 
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
+                        $_SESSION['stu_name'] = $row['name'];
                         echo "<tr>
                                 <th>{$id}</th>
                                 <td>{$row['registernumber']}</td>
@@ -92,5 +95,6 @@ $result = $stmt->get_result();
             </tbody>
         </table>
     </div>
+    <!-- </div> -->
 </body>
 </html>
