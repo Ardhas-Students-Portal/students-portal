@@ -80,7 +80,7 @@
             opacity: 1; 
         }
         .card {
-            border: none;
+            border: 1px solid #000;
             background-color: #fff;
             transition: transform 0.3s;
         }
@@ -96,7 +96,38 @@
             font-size: 1.1rem;
             color: #666;
         }
-     
+     /* gallery */
+     .row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
 
     </style>
 
@@ -472,6 +503,26 @@
    <p>Join with us</p></div>
   </div>
   <div class="mes-caption"><p>Moments we cherish</p></div></div>
+
+
+<div class="container">
+<div class="row">
+  <div class="column">
+    <img src="assets/images/gallery8.png">
+    <img src="assets/images/gallery9.png">
+    <img src="assets/images/gallery10.png">
+  </div>
+  <div class="column">
+  <img src="assets/images/gallery2.png">
+    <img src="assets/images/gallery3.png">
+    <img src="assets/images/gallery5.png">
+    
+  </div>
+</div>
+</div>
+
+<!-- footer -->
+<div class="mt-5"></div>
 
 <!-- footer file -->
 <?php 
