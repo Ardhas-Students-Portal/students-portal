@@ -1,7 +1,10 @@
 <?php
 session_start();
 
+$rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : '';
+$name = isset($_GET['name']) ? $_GET['name'] : '';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Markentryform</title>
     <link rel="stylesheet" href="./assets/adminstyle.css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -27,16 +30,16 @@ session_start();
             <div class="d-flex justify-content-center py-3">
                 <form id="markEntryForm" action="studentmark.php" method="post" class="col-md-10 col-8">
                     <div class="text-center pb-5 fs-3 text">Add Students mark</div>
-                    <div class="form-row ">
-                        <div class="form-group col-md-6">
-                            <label for="rollNo">Roll Number</label>
-                            <input type="text" class="form-control" id="rollNo" name="rollNo" required pattern="\d+">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="name">Student Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z\s]+">
-                        </div>
-                    </div>
+                    <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="rollNo">Roll Number</label>
+                    <input type="text" class="form-control" id="rollNo" name="rollNo" value="<?php echo htmlspecialchars($rollNo); ?>" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="name">Student Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly>
+                </div>
+            </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exam">Exam</label>

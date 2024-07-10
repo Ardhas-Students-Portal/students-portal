@@ -31,7 +31,7 @@ $teacher = $_SESSION['teacher'];
             ?>
             <ul class="list-unstyled px-2">
                 <li class="<?= ($current_page == 'teacherindex.php') ? 'active' : '' ?>"> <a href="teacherindex.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-people-fill"></i> View Students</a>
-                <li class="<?= ($current_page == 'addmarks.php') ? 'active' : '' ?>"> <a href="addmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
+                <!-- <li class="<?= ($current_page == 'addmarks.php') ? 'active' : '' ?>"> <a href="addmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a> -->
                 <li class="<?= ($current_page == 'viewmarks.php') ? 'active' : '' ?>"><a href="viewmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-eye-fill"></i> View & Edit Marks</a>
                 <!-- <li class="<?= ($current_page == 'viewmarks.php') ? 'active' : '' ?>"><a href="viewmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-pencil-fill"></i> Update Student Mark</a> -->
             </ul>

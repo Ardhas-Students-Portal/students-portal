@@ -129,23 +129,23 @@ mysqli_close($conn);
               </tr>
             </thead>
             <tbody id="studentTable">
-              <?php
-              if ($result2->num_rows > 0) {
-                while ($row2 = $result2->fetch_assoc()) {
-                  echo "<tr>";
-                  echo "<td>" . htmlspecialchars($row2["registernumber"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
-                  echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
-                  echo "</tr>";
-                }
-              } else {
-                echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
-              }
-              ?>
+            <?php
+  if ($result2->num_rows > 0) {
+      while ($row2 = $result2->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) . "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
+          echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
+          echo "</tr>";
+      }
+  } else {
+      echo "<tr><td colspan='7' class='text-center'>No data found</td></tr>";
+  }
+  ?>
             </tbody>
           </table>
         </div>

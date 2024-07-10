@@ -21,8 +21,17 @@ session_start();
         <div class="content flex-grow-1">
             <?php include('admin_Stuheader.php'); ?>
             <div class="container mt-5 ">
+            <div class="form-group">
+        <label for="examFilter">Select Exam:</label>
+        <select class="form-control" id="examFilter">
+            <option value="all">All</option>
+            <option value="Quarterly Exam">Quarterly Exam</option>
+            <option value="Halfyearly Exam">Halfyearly Exam</option>
+            <option value="Annual Exam">Annual Exam</option>
+        </select>
+    </div>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Roll Number</th>
@@ -50,7 +59,7 @@ session_start();
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
+                                    echo "<tr data-exam='{$row['exam']}'>";
                                     echo "<td>{$row['roll_no']}</td>";
                                     echo "<td>{$row['name']}</td>";
                                     echo "<td>{$row['exam']}</td>";
@@ -85,6 +94,22 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $('#examFilter').on('change', function() {
+            var selectedExam = $(this).val();
+            $('tbody tr').each(function() {
+                var rowExam = $(this).data('exam');
+                if (selectedExam === 'all' || rowExam === selectedExam) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
