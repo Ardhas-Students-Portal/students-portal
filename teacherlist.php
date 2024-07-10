@@ -61,7 +61,7 @@
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
-        <div class="content flex-grow-1">
+        <div class="content flex-grow-1 ">
             <?php include('adminheader.php')?>
             <div class="container">
             <div class="search-bar my-2">
@@ -73,7 +73,7 @@
                     <button class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
