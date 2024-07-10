@@ -304,8 +304,12 @@ hr.h-color {
                             <div class="error-message" id="gender-error">Please select your gender.</div>
                         </div>
                         <div class="form-group">
-                            <label for="teacher">Assigned Teacher</label>
-                            <input type="text" class="form-control" id="teacher" name="teacher" placeholder="Enter the Assigned Teacher's Name">
+                            <label for="teacher">Assign Teacher</label>
+                            <select class="form-control" id="teacher" name="teacher">
+                                <option value="select">Select Teacher</option>
+                                <option value="Bharani">Bharani</option>
+                                <option value="Dhanush">Dhanush</option>
+                            </select>
                             <div class="error-message" id="teacher-error">Please enter a valid teacher name.</div>
                         </div>
                         <div class="form-group">
