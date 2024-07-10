@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
    <link rel="stylesheet" href="style.css">
 </head>
 
@@ -63,7 +64,6 @@
     </div>
     <nav class="nav flex-column">
       <a href="#view-students"><i class="bi bi-people-fill"></i> View Students</a>
-      <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
       <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
       <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
       <a href="student_logout.php"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
@@ -84,10 +84,6 @@
             <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
           </div>
         </div>
-        <button class="btn btn-secondary add-marks-button" onclick="window.location.href='addmarks.php'">
-          <i class="bi bi-plus-square-fill"></i>
-          <span>Add Marks</span>
-        </button>
       </div>
 
       <div id="view-students" class="table-responsive">
@@ -104,24 +100,25 @@
             </tr>
           </thead>
           <tbody id="studentTable">
-            <?php
-            if ($result2->num_rows > 0) {
-                while ($row2 = $result2->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row2["registernumber"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
-            }
-            ?>
-          </tbody>
+  <?php
+  if ($result2->num_rows > 0) {
+      while ($row2 = $result2->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) . "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
+          echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
+          echo "</tr>";
+      }
+  } else {
+      echo "<tr><td colspan='7' class='text-center'>No data found</td></tr>";
+  }
+  ?>
+</tbody>
+
         </table>
       </div>
     </div>
