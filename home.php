@@ -317,13 +317,8 @@
                 <div class="card-body">
                     <h5 class="card-title border-bottom">Vision</h5>
                     <p class="card-text">
-                        <p>"The Ardhas School prepares students to understand, contribute to, and succeed in
-                             a rapidly changing society, thus making the world a better and more just place.
-                              We will ensure that our students develop both the skills that a sound 
-                              education provides and the competencies essential for success and leadership 
-                              in the emerging creative economy. We will also lead in generating practical 
-                              and theoretical knowledge that enables people to better understand our world
-                               and improve conditions for local and global communities."</p>
+                        <p>"The Ardhas School prepares students to understand, contribute to, and succeed in a rapidly changing society, thus making the world a better and more just place.We will ensure that our students develop both the skills that a sound education provides and the competencies essential for success and leadership in the emerging creative economy. We will also lead in generating practical 
+                              and theoretical knowledge that enables people to better understand our world and improve conditions for local and global communities."</p>
                     </p>
                 </div>
             </div>
@@ -352,10 +347,7 @@
                     <p class="card-text">
                         <p>"At our school, we cherish values that shape our community and guide our actions every day.
                              Excellence is at the core of our mission, driving us to achieve high academic standards and nurture 
-                             personal growth in every student. Integrity forms the foundation of our interactions, emphasizing
-                              honesty, ethical conduct, and accountability in all endeavors. We value respect, celebrating 
-                              diversity and
-                             creating a supportive environment where everyone is valued and included." </p>
+                             personal growth in every student. Integrity forms the foundation of our interactions, emphasizing honesty, ethical conduct, and accountability in all endeavors. We value respect, celebrating diversity and creating a supportive environment where everyone is valued and included." </p>
                     </p>
                 </div>
             </div>
