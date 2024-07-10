@@ -135,7 +135,7 @@ $conn->close();
 
         p {
             padding: 0px 15px;
-            font-size: 17px;
+            font-size: 15px;
             color: #003366;
         }
 
@@ -236,9 +236,9 @@ hr.h-color {
                             <img src="./assets/images/students-image.webp" alt="studentsimg">
                         </div>
                         <div class="student-imginfo">
-                            <p><strong>Welcome!</strong> Register with us by completing the form on the right. Please provide accurate information to ensure smooth processing of your registration. <strong>Thank you!</strong><br>
-                                <span id="info">Your registration helps us better serve you. We eagerly anticipate welcoming you to our community!</span>
-                            </p>
+                            <p><strong>Welcome!</strong> Please complete the student registration form on the right. Admins are requested to provide accurate information to ensure smooth processing of the registration. <strong>Thank you!</strong><br>
+                            <span id="info">Accurate student registration helps us better serve our community. We eagerly anticipate welcoming new students!</span>
+                        </p>
                         </div>
                     </div>
                 </div>

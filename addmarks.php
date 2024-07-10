@@ -1,3 +1,8 @@
+<?php
+$rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : '';
+$name = isset($_GET['name']) ? $_GET['name'] : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,26 +13,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="style.css">
-   
 </head>
 <body>
-
-
-  <div class="chead">
-    <h2>Students Data</h2>
-  </div>
-  <button class="bi bi-list d-lg-none" type="button" data-bs-toggle="collapse" onclick="toggleSidebar()" ></button>
+    <div class="chead">
+        <h2>Students Data</h2>
+    </div>
+    <button class="bi bi-list d-lg-none" type="button" data-bs-toggle="collapse" onclick="toggleSidebar()"></button>
     <div class="container mt-5">
-        
-        <form id="markEntryForm" action="studentmark.php" method="post">
+    <form id="markEntryForm" action="studentmark.php" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="rollNo">Roll Number</label>
-                    <input type="text" class="form-control" id="rollNo" name="rollNo" required pattern="\d+">
+                    <input type="text" class="form-control" id="rollNo" name="rollNo" value="<?php echo htmlspecialchars($rollNo); ?>" readonly>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="name">Student Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z\s]+">
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly>
                 </div>
             </div>
             <div class="form-row">
@@ -41,7 +42,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                <label for="class">Select Class</label>
+                    <label for="class">Select Class</label>
                     <select class="form-control" id="class" name="class" required>
                         <option value="">Select Class</option>
                         <option value="6">6</option>
@@ -90,20 +91,13 @@
                 <div class="form-group col-md-6">
                     <label for="totalpercentage">Total Percentage</label>
                     <input type="number" class="form-control" id="totalpercentage" name="totalpercentage" readonly>
-                  
                 </div>
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
-</div>
-
-                </tbody>
-            </table>
-        </div>
     </div>
-    </div>   
 
     <script>
         $(document).ready(function() {
@@ -171,7 +165,7 @@
                         alpha: "Please enter only alphabets and spaces"
                     },
                     class: "Please select a class",
-                    exam: "Please select a exam",
+                    exam: "Please select an exam",
                     tamil: {
                         required: "Please enter marks for Tamil",
                         number: "Please enter a valid number",
@@ -223,21 +217,20 @@
             });
 
             function calculateTotal() {
-            let total = 0;
-            $('.subject-mark').each(function() {
-                let value = $(this).val();
-                total += parseFloat(value) || 0;
-            });
-            $('#totalMarks').val(total);
-            let percentage = (total / 600) * 100;
-            $('#totalpercentage').val(percentage.toFixed(2));
-        }
+                let total = 0;
+                $('.subject-mark').each(function() {
+                    let value = $(this).val();
+                    total += parseFloat(value) || 0;
+                });
+                $('#totalMarks').val(total);
+                let percentage = (total / 600) * 100;
+                $('#totalpercentage').val(percentage.toFixed(2));
+            }
 
-        $('.subject-mark').on('input', function() {
-            calculateTotal();
+            $('.subject-mark').on('input', function() {
+                calculateTotal();
+            });
         });
-    });
-    
     </script>
 </body>
 </html>
