@@ -1,6 +1,9 @@
 <?php 
 // session_start();
 $teacher = $_SESSION['teacher'];
+if(!isset($_SESSION['userid'])){
+    header('Location: Login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +37,7 @@ $teacher = $_SESSION['teacher'];
                 <!-- <li class="<?= ($current_page == 'addmarks.php') ? 'active' : '' ?>"> <a href="addmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a> -->
                 <li class="<?= ($current_page == 'viewmarks.php') ? 'active' : '' ?>"><a href="viewmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-eye-fill"></i> View & Edit Marks</a>
                 <!-- <li class="<?= ($current_page == 'viewmarks.php') ? 'active' : '' ?>"><a href="viewmarks.php" class="text-decoration-none py-2 px-3 d-block"><i class="bi bi-pencil-fill"></i> Update Student Mark</a> -->
+                <li class="<?= ($current_page == 'logout.php') ? 'active' : '' ?>"><a href="logout.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
             </ul>
             <hr class="h-color mx-2">
         </div>
