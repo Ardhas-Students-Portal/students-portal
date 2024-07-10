@@ -53,6 +53,7 @@
         #container{
             padding: 35px 40px;
         }
+        
     </style>
 </head>
 
@@ -61,62 +62,62 @@
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
-        <div class="content flex-grow-1 ">
+        <div class="content flex-grow-1 " id="content">
             <?php include('adminheader.php')?>
             <div class="container">
-            <div class="search-bar my-2">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <div class="search-bar my-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search with Name">
+                        <button class="btn btn-primary" id="searchButton">Search</button>
                     </div>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search with Name">
-                    <button class="btn btn-primary" id="searchButton">Search</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <?php
+                        include('dbconnect.php');
+                        $sql = "SELECT * FROM `teachers`";
+                        $result = mysqli_query($conn, $sql);
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $name = $row['name'];
+                                $email = $row['email'];
+                                $gender = $row['gender'];
+                                $dateofbirth = $row['dob'];
+                                $ph_no = $row['phno'];
+                                $address = $row['address'];
+                                $subject = $row['subject'];
+                                echo '<tr>
+                                <td  scope="row">' . $name . '</td>
+                                <td>' . $email . '</td>
+                                <td>' . $gender . '</td>
+                                <td>' . $dateofbirth . '</td>
+                                <td>' . $ph_no . '</td>
+                                <td>' . $address . '</td>
+                                <td>' . $subject . '</td>
+                                </tr>';
+                            }
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Date of Birth</th>
-                        <th scope="col">Phone number</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Subject</th>
-                    </tr>
-                </thead>
-                <tbody id="studentTableBody">
-                    <?php
-                    include('dbconnect.php');
-                    $sql = "SELECT * FROM `teachers`";
-                    $result = mysqli_query($conn, $sql);
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $name = $row['name'];
-                            $email = $row['email'];
-                            $gender = $row['gender'];
-                            $dateofbirth = $row['dob'];
-                            $ph_no = $row['phno'];
-                            $address = $row['address'];
-                            $subject = $row['subject'];
-                            echo '<tr>
-                            <td  scope="row">' . $name . '</td>
-                            <td>' . $email . '</td>
-                            <td>' . $gender . '</td>
-                            <td>' . $dateofbirth . '</td>
-                            <td>' . $ph_no . '</td>
-                            <td>' . $address . '</td>
-                            <td>' . $subject . '</td>
-                        </tr>';
-                        }
-                    }
-                    ?>
-                </tbody>
-            </table>
         </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('searchInput').addEventListener('input', function() {
             var input = document.getElementById('searchInput').value.toLowerCase();

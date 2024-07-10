@@ -3,13 +3,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminheader</title>
+    <style>
+        body{
+            background-color: black;
+        }
+    </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-md  border border-2 w-100">
         <div class="container-fluid d-flex justify-content-between">
