@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>teacherlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
@@ -53,6 +53,9 @@
         #container{
             padding: 35px 40px;
         }
+        #content{
+            background-color: white;
+        }
         
     </style>
 </head>
@@ -62,7 +65,7 @@
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
-        <div class="content flex-grow-1 " id="content">
+        <div class="content flex-grow-1 " id="content" >
             <?php include('adminheader.php')?>
             <div class="container">
                 <div class="search-bar my-2">
@@ -117,8 +120,7 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>
         document.getElementById('searchInput').addEventListener('input', function() {
             var input = document.getElementById('searchInput').value.toLowerCase();
             var table = document.getElementById('studentTableBody');
