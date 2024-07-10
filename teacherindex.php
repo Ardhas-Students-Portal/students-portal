@@ -101,72 +101,57 @@ mysqli_close($conn);
     <div class="sidebar" id="side_nav">
       <?php include('teacherdashboard.php'); ?>
     </div>
-    <nav class="nav flex-column">
-      <a href="#view-students"><i class="bi bi-people-fill"></i> View Students</a>
-      <a href="addmarks.php"><i class="bi bi-plus-square-fill"></i> Add Student Mark</a>
-      <a href="viewmarks.php"><i class="bi bi-eye-fill"></i> View Student Mark</a>
-      <a href="viewmarks.php"><i class="bi bi-pencil-fill"></i> Update Student Mark</a>
-      <a href="student_logout.php"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
-    </nav>
-  </div>
-  <div class="chead">
-    <h2>Students Data</h2>
-  </div>
-  <button class="bi bi-list d-lg-none" type="button" data-bs-toggle="collapse" onclick="toggleSidebar()" ></button>
-  <div class="main-content">
-    <div class="container">
-      <div class="actions-container">
-        <div class="search-bar me-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <div class="content flex-grow-1">
+    <?php include('admin_Stuheader.php'); ?>
+      <div class="container p-5">
+        <div class="actions-container">
+          <div class="search-bar me-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+              </div>
+              <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
             </div>
-            <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
           </div>
         </div>
-        <button class="btn btn-secondary add-marks-button" onclick="window.location.href='addmarks.php'">
-          <i class="bi bi-plus-square-fill"></i>
-          <span>Add Marks</span>
-        </button>
-      </div>
 
-      <div id="view-students" class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Register Number</th>
-              <th scope="col">Name</th>
-              <th scope="col">Class</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Teacher</th>
-              <th scope="col">Parent Number</th>
-              <th scope="col">Address</th>
-            </tr>
-          </thead>
-          <tbody id="studentTable">
-            <?php
-            if ($result2->num_rows > 0) {
+        <div id="view-students" class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Register Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Parent Number</th>
+                <th scope="col">Address</th>
+              </tr>
+            </thead>
+            <tbody id="studentTable">
+              <?php
+              if ($result2->num_rows > 0) {
                 while ($row2 = $result2->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row2["registernumber"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
-                    echo "</tr>";
+                  echo "<tr>";
+                  echo "<td>" . htmlspecialchars($row2["registernumber"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["teacher"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["parentnumber"]) . "</td>";
+                  echo "<td>" . htmlspecialchars($row2["address"]) . "</td>";
+                  echo "</tr>";
                 }
-            } else {
+              } else {
                 echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
-            }
-            ?>
-          </tbody>
-        </table>
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
   <script>
     document.getElementById('searchInput').addEventListener('input', function() {
       const searchValue = this.value.trim().toLowerCase();
@@ -200,4 +185,3 @@ mysqli_close($conn);
   </script>
 </body>
 
-</html>
