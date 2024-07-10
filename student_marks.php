@@ -2,7 +2,7 @@
 // session_start(); 
 include('dbconnect.php');
 if (!isset($_SESSION['userid'])) {
-    header('Location: login.php');
+    header('Location: home.php');
 }
 $id = $_SESSION['userid'];
 

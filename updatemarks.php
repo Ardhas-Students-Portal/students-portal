@@ -1,5 +1,9 @@
 <?php
 include('dbconnect.php');
+if (!isset($_SESSION['userid'])) {
+    header('Location: home.php');
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $id = $_POST['id'];
