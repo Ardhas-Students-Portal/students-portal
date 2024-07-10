@@ -44,7 +44,7 @@
                 <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                     <i class="bi bi-person-circle pe-1"></i>
                     <a class="nav-link active" aria-current="page" href="studentdashboard.php" title="">
-                        Hi Student 
+                        Hi <?php echo $_SESSION['stu_name'] ?> 
                     </a>
                 </div>
             </div>
