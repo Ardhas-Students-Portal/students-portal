@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md  border border-2 w-100" id="nav">
+    <nav class="navbar navbar-expand-md  w-100" id="nav">
         <div class="container-fluid d-flex justify-content-between">
             <div class="d-flex justify-content-between d-md-none d-block">
                 <a class="navbar-brand" href="#">Navbar</a>
