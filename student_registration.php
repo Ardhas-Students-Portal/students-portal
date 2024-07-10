@@ -47,6 +47,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <title>Student Registration</title>
     <style>
         @media (max-width: 768px) {
@@ -260,220 +262,198 @@ hr.h-color {
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="createpassword">Create Password</label>
-                                <input type="password" class="form-control" id="createpassword" name="createpassword" placeholder="Enter your Password">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="createpassword" name="createpassword" placeholder="Enter your Password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-eye-slash" id="createpassword-icon" style="cursor: pointer;"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="error-message" id="createpassword-error">Please enter a valid password.</div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="confirmpassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Re-Enter your password">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm your Password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-eye-slash" id="confirmpassword-icon" style="cursor: pointer;"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="error-message" id="confirmpassword-error">Passwords do not match.</div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="class">Class</label>
-                                <input type="text" class="form-control" id="class" name="class" placeholder="Enter your class">
-                                <div class="error-message" id="class-error">Please enter a valid class name.</div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="dateofbirth">Date of Birth</label>
-                                <input type="date" class="form-control" id="dateofbirth" name="dateofbirth">
-                                <div class="error-message" id="dateofbirth-error">Please enter a valid date of birth</div>
-                            </div>
+                        <div class="form-group">
+                            <label for="class">Class</label>
+                            <input type="text" class="form-control" id="class" name="class" placeholder="Enter your Class">
+                            <div class="error-message" id="class-error">Please enter a valid class.</div>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Gender</label><br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="male" name="gender" value="male">
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="female" name="gender" value="female">
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <div class="error-message" id="gender-error">Please select a gender</div>
+                            <label for="dateofbirth">Date of Birth</label>
+                            <input type="date" class="form-control" id="dateofbirth" name="dateofbirth" placeholder="Enter your Date of Birth">
+                            <div class="error-message" id="dateofbirth-error">Please enter a valid date of birth.</div>
                         </div>
                         <div class="form-group">
-                            <label for="teacher">Assign Teacher</label>
-                            <select class="form-control" id="teacher" name="teacher">
-                                <option value="select">Select Teacher</option>
-                                <option value="Bharani">Bharani</option>
-                                <option value="Dhanush">Dhanush</option>
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option value="">Select your Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
                             </select>
-                            <div class="error-message" id="teacher-error">Please select the teacher</div>
+                            <div class="error-message" id="gender-error">Please select your gender.</div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="parentnumber">Parent Number</label>
-                                <input type="text" class="form-control" id="parentnumber" name="parentnumber" placeholder="Enter your 10 Digit Number">
-                                <div class="error-message" id="parentnumber-error">Please enter a valid parent number.</div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="alternatenumber">Alternate Number</label>
-                                <input type="text" class="form-control" id="alternatenumber" name="alternatenumber" placeholder="Enter Alternate number">
-                                <div class="error-message" id="alternatenumber-error">Please enter a valid alternate number.</div>
-                                <div class="error-message" id="phone-unique-error">Parent number and alternate number cannot be the same.</div>
-                            </div>
+                        <div class="form-group">
+                            <label for="teacher">Assigned Teacher</label>
+                            <input type="text" class="form-control" id="teacher" name="teacher" placeholder="Enter the Assigned Teacher's Name">
+                            <div class="error-message" id="teacher-error">Please enter a valid teacher name.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentnumber">Parent Number</label>
+                            <input type="text" class="form-control" id="parentnumber" name="parentnumber" placeholder="Enter Parent Number">
+                            <div class="error-message" id="parentnumber-error">Please enter a valid parent number.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alternatenumber">Alternate Number</label>
+                            <input type="text" class="form-control" id="alternatenumber" name="alternatenumber" placeholder="Enter Alternate Number">
+                            <div class="error-message" id="alternatenumber-error">Please enter a valid alternate number.</div>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <textarea class="form-control" name="address" id="address"></textarea>
+                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your Address"></textarea>
                             <div class="error-message" id="address-error">Please enter a valid address.</div>
                         </div>
-                        <button class="btn btn-primary mt-3 btn-block" id="btn">SUBMIT</button>
-                        <div id="confirmationMessage" class="mt-3" style="display: none;">
-                            <div class="alert alert-success" role="alert">
-                                Form submitted successfully!
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <div id="confirmationMessage" style="display:none;">Form submitted successfully!</div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#btn').click(function(e) {
-                e.preventDefault();
-                var isValid = true;
+            $('#createpassword-icon').on('click', function() {
+                var passwordInput = $('#createpassword');
+                var icon = $(this);
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                }
+            });
+
+            $('#confirmpassword-icon').on('click', function() {
+                var passwordInput = $('#confirmpassword');
+                var icon = $(this);
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                }
+            });
+
+            $('#form').on('submit', function(event) {
+                var valid = true;
+
                 var name = $('#name').val();
-                var registernumber = $('#registernumber').val();
-                var createpassword = $('#createpassword').val();
-                var confirmpassword = $('#confirmpassword').val();
-                var classname = $('#class').val();
-                var dateofbirth = $('#dateofbirth').val();
-                var gender = $('input[name="gender"]:checked').val();
-                var teacher = $('#teacher').val();
-                var parentnumber = $('#parentnumber').val();
-                var alternatenumber = $('#alternatenumber').val();
-                var address = $('#address').val();
-
-                function isValidName(name) {
-                    return /^[a-zA-Z]/.test(name);
-                }
-
-                function isvalidNumber(registernumber) {
-                    return /^[0-9]+$/.test(registernumber);
-                }
-
-                function isValidPassword(createpassword) {
-                    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/.test(createpassword);
-                }
-
-                function isValidPhone(phone) {
-                    return phone.length === 10 && !isNaN(phone) && ['9', '8', '7', '6'].includes(phone.charAt(0));
-                }
-
-                function isvalidAddress(address) {
-                    return address.length >= 10 && address.length <= 400;
-                }
-
-                function isValidClassname(classname) {
-                    return /^[a-zA-Z0-9 ]+$/.test(classname);
-                }
-
-                function isValidDOB(dateofbirth) {
-                    var today = new Date();
-                    var dob = new Date(dateofbirth);
-                    return dob.getFullYear() <= (today.getFullYear() - 6);
-                }
-
-                if (!isValidName(name)) {
+                if (!name) {
                     $('#name-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#name-error').hide();
                 }
 
-                if (!isvalidNumber(registernumber)) {
+                var registernumber = $('#registernumber').val();
+                if (!registernumber) {
                     $('#registernumber-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#registernumber-error').hide();
                 }
 
-                if (!isValidPassword(createpassword)) {
+                var createpassword = $('#createpassword').val();
+                if (!createpassword) {
                     $('#createpassword-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#createpassword-error').hide();
                 }
 
+                var confirmpassword = $('#confirmpassword').val();
                 if (createpassword !== confirmpassword) {
                     $('#confirmpassword-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#confirmpassword-error').hide();
                 }
 
-                if (!isValidClassname(classname)) {
+                var studentClass = $('#class').val();
+                if (!studentClass) {
                     $('#class-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#class-error').hide();
                 }
 
-                if (!isValidDOB(dateofbirth)) {
+                var dateofbirth = $('#dateofbirth').val();
+                if (!dateofbirth) {
                     $('#dateofbirth-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#dateofbirth-error').hide();
                 }
 
+                var gender = $('#gender').val();
                 if (!gender) {
                     $('#gender-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#gender-error').hide();
                 }
 
-                if (teacher === "select") {
+                var teacher = $('#teacher').val();
+                if (!teacher) {
                     $('#teacher-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#teacher-error').hide();
                 }
 
-                if (!isValidPhone(parentnumber)) {
+                var parentnumber = $('#parentnumber').val();
+                if (!parentnumber) {
                     $('#parentnumber-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#parentnumber-error').hide();
                 }
 
-                if (!isValidPhone(alternatenumber)) {
+                var alternatenumber = $('#alternatenumber').val();
+                if (!alternatenumber) {
                     $('#alternatenumber-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#alternatenumber-error').hide();
                 }
 
-                if (parentnumber === alternatenumber) {
-                    $('#phone-unique-error').show();
-                    isValid = false;
-                } else {
-                    $('#phone-unique-error').hide();
-                }
-
-                if (!isvalidAddress(address)) {
+                var address = $('#address').val();
+                if (!address) {
                     $('#address-error').show();
-                    isValid = false;
+                    valid = false;
                 } else {
                     $('#address-error').hide();
                 }
 
-                if (isValid) {
-                    $('form').submit();
-                    $('#confirmationMessage').show();
+                if (!valid) {
+                    event.preventDefault();
                 }
-                setTimeout(function() {
-                    $('#confirmationMessage').hide();
-                    $('#main')[0].reset();
-                    $('#fileList').empty();
-                }, 6500);
             });
         });
     </script>
