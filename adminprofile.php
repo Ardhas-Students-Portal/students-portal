@@ -1,40 +1,42 @@
 <?php
 session_start();
-$userid = $_SESSION['userid'];
-$name=$_SESSION['name'];
-$email=$_SESSION['email'];
-$phone=$_SESSION['phone'];
 include('dbconnect.php');
+
+if (!isset($_SESSION['userid'])) {
+    header('Location: login.php');
+    exit();
+}
+
+$userid = $_SESSION['userid'];
+$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+$phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $sql = "Select * from user where Userid = ?";
+
+    $sql = "UPDATE user SET name = ?, email = ?, phone = ? WHERE userid = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $userid);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    $sql = "Update user set userid = ?, name = ?,  email = ?, phone = ?  where Userid = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "issss", $userid, $name, $email, $phone, $userid);
+    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $phone, $userid);
     $result = mysqli_stmt_execute($stmt);
+
     if ($result) {
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
         $_SESSION['phone'] = $phone;
-
-        $_SESSION['error-message'] = 'Profile Updated Successfully!';
+        $_SESSION['success-message'] = 'Profile Updated Successfully!';
         header('Location: admincontent.php');
+        exit();
     } else {
-        echo "Error while updating the data!";
+        $error_message = "Error while updating the data!";
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,19 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
-        h3{
+        h3 {
             text-align: center;
             font-size: 20px;
         }
-        #form{
+        #form {
             padding: 30px;
             margin: 20px;
             background-color: white;
-            width:70%;
+            width: 70%;
             border-radius: 8px;
         }
-        #container{
-           
+        #container {
             padding: 20px;
             border-radius: 10px;
             display: flex;
@@ -62,11 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center;
             height: 100vh;
         }
-        #submitbutton{
+        #submitbutton {
             margin-top: 10px;
             width: 50%;
         }
-        .error{
+        .error {
             color: red;
         }
     </style>
@@ -100,11 +101,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="tel" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="phone number" name="phone" value="<?php echo $phone ?>">
                     </div>
                     <span class="error" id="phoneError"></span>
-                    <div id="message" class="text-center text-success ">
+                    <div id="message" class="text-center text-success">
                         <?php
-                        if (isset($_SESSION['error-message'])) {
-                            echo '<p>' . $_SESSION['error-message'] . '</p>';
-                            unset($_SESSION['error-message']);
+                        if (isset($_SESSION['success-message'])) {
+                            echo '<p>' . $_SESSION['success-message'] . '</p>';
+                            unset($_SESSION['success-message']);
+                        }
+                        if (isset($error_message)) {
+                            echo '<p class="text-danger">' . $error_message . '</p>';
                         }
                         ?>
                     </div>
@@ -119,7 +123,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById('side_nav').classList.toggle('active');
         });
     </script>
-    <script src="http://localhost/students-portal/profilescript.js"></script>
 </body>
-
 </html>
