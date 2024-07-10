@@ -52,6 +52,7 @@
         }
         #container{
             padding: 35px 40px;
+            
         }
         #content{
             background-color: white;
@@ -67,7 +68,7 @@
         </div>
         <div class="content flex-grow-1 " id="content" >
             <?php include('adminheader.php')?>
-            <div class="container">
+            <div class="container" id="container">
                 <div class="search-bar my-2">
                     <div class="input-group">
                         <div class="input-group-prepend">
