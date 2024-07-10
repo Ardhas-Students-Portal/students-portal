@@ -1,11 +1,30 @@
 <?php
+$userid = $_SESSION['userid'];
 $name=$_SESSION['name'];
+$email=$_SESSION['email'];
+$phone=$_SESSION['phone'];
 include('dbconnect.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $sql = "Select * from user where Userid = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    
+    $sql = "Update user set userid = ?, name = ?,  email = ?, phone = ?  where Userid = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "issss", $userid, $name, $email, $phone, $userid);
+    $result = mysqli_stmt_execute($stmt);
     if ($result) {
         $_SESSION['name'] = $name;
-       $_SESSION['error-message'] = 'Profile Updated Successfully!';
+        $_SESSION['email'] = $email;
+        $_SESSION['phone'] = $phone;
+
+        $_SESSION['error-message'] = 'Profile Updated Successfully!';
         header('Location: admincontent.php');
     } else {
         echo "Error while updating the data!";
@@ -36,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                 <i class="bi bi-person-circle pe-1"></i>
                 <a class="nav-link active" aria-current="page" href="adminprofile.php" title="You can update the Profile">
-                    Hi  <?php echo $name ?>
+                    Hi <?php echo $name ?>
                 </a>
             </div>
         </div>
