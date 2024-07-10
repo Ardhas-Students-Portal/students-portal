@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>studentlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
@@ -55,63 +55,61 @@
         }
     </style>
 </head>
-
 <body>
     <div class="main-container d-flex">
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
         <div class="content flex-grow-1">
-            <?php include('adminheader.php')?>
-            <div class="container">
-            <div class="search-bar my-2">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <?php include('header.php')?>
+            <div class="container" id="container">
+                <div class="search-bar my-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
+                        <button class="btn btn-primary" id="searchButton">Search</button>
                     </div>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
-                    <button class="btn btn-primary" id="searchButton">Search</button>
                 </div>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Register number</th>
-                        <th scope="col">Class</th>
-                        <th scope="col">Date of Birth</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Teacher</th>
-                        <th scope="col">Address</th>
-                    </tr>
-                </thead>
-                <tbody id="studentTableBody">
-                    <?php
-                    include('dbconnect.php');
-                    $sql = "SELECT * FROM `studentdata`";
-                    $result = mysqli_query($conn, $sql);
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $name = $row['name'];
-                            $regno = $row['registernumber'];
-                            $class = $row['class'];
-                            $dateofbirth = $row['dateofbirth'];
-                            $gender = $row['gender'];
-                            $teacher = $row['teacher'];
-                            $address = $row['address'];
-
-                            echo '<tr>
-                            <td  scope="row">' . $name . '</td>
-                            <td>' . $regno . '</td>
-                            <td>' . $class . '</td>
-                            <td>' . $dateofbirth . '</td>
-                            <td>' . $gender . '</td>
-                            <td>' . $teacher . '</td>
-                            <td>' . $address . '</td>
-                        </tr>';
+                <table class="table table-striped mt-3 mb-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Register number</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <?php
+                        include('dbconnect.php');
+                        $sql = "SELECT * FROM studentdata";
+                        $result = mysqli_query($conn, $sql);
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $name = $row['name'];
+                                $regno = $row['registernumber'];
+                                $class = $row['class'];
+                                $dateofbirth = $row['dateofbirth'];
+                                $gender = $row['gender'];
+                                $teacher = $row['teacher'];
+                                $address = $row['address'];
+                                echo '<tr>
+                                <td  scope="row">' . $name . '</td>
+                                <td>' . $regno . '</td>
+                                <td>' . $class . '</td>
+                                <td>' . $dateofbirth . '</td>
+                                <td>' . $gender . '</td>
+                                <td>' . $teacher . '</td>
+                                <td>' . $address . '</td>
+                                </tr>';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                 </tbody>
             </table>
         </div>

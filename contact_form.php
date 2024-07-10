@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "students_portal";
+$dbname = "studentdb";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname,3306);
@@ -20,7 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "INSERT INTO contact (name, email, message) VALUES ('$name', '$email', '$message')";
 
   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo '<script>
+            alert("Submitted");
+            window.location.href="home.php";
+            </script>';
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }

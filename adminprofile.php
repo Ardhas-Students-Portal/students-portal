@@ -1,6 +1,9 @@
 <?php
 session_start();
 $userid = $_SESSION['userid'];
+$name=$_SESSION['name'];
+$email=$_SESSION['email'];
+$phone=$_SESSION['phone'];
 include('dbconnect.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -18,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_stmt_execute($stmt);
     if ($result) {
         $_SESSION['name'] = $name;
+        $_SESSION['email'] = $email;
+        $_SESSION['phone'] = $phone;
+
         $_SESSION['error-message'] = 'Profile Updated Successfully!';
         header('Location: admincontent.php');
     } else {
@@ -81,17 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput2" class="form-label">Name</label>
-                        <input type="text" id="exampleFormControlInput2" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Enter your name" name="name">
+                        <input type="text" id="exampleFormControlInput2" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Enter your name" name="name" value="<?php echo $name ?>">
                     </div>
                     <span class="error" id="nameError"></span>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com" name="email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com" name="email" value="<?php echo $email ?>">
                     </div>
                     <span class="error" id="emailError"></span>
                     <div class="form-group">
                         <label for="phone" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="phone number" name="phone">
+                        <input type="tel" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="phone number" name="phone" value="<?php echo $phone ?>">
                     </div>
                     <span class="error" id="phoneError"></span>
                     <div id="message" class="text-center text-success ">

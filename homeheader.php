@@ -77,6 +77,9 @@
                   <div class="d-flex justify-content-center align-items-center gap-3">
                     <a href="Login.php" class=" btn btn-primary text-decoration-none px-3 py-1 rounded-2">LOGIN</a>
                   </div>
+                  <div class="d-flex justify-content-center align-items-center gap-3">
+                    <a href="#" class=" btn btn-primary text-decoration-none px-3 py-1 rounded-2">LOGOUT</a>
+                  </div>
 
                
             </div>
