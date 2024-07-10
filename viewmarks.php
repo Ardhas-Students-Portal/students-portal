@@ -22,9 +22,9 @@ session_start();
             <?php include('admin_Stuheader.php'); ?>
             <div class="container mt-5 ">
             <div class="form-group">
-        <label for="examFilter">Select Exam:</label>
+        <!-- <label for="examFilter">Select Exam:</label> -->
         <select class="form-control" id="examFilter">
-            <option value="all">All</option>
+            <option value="all">Choose Exam Now!</option>
             <option value="Quarterly Exam">Quarterly Exam</option>
             <option value="Halfyearly Exam">Halfyearly Exam</option>
             <option value="Annual Exam">Annual Exam</option>
