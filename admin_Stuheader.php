@@ -27,7 +27,7 @@ if(!isset($_SESSION['userid'])){
             </div>
             <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                 <i class="bi bi-person-circle pe-1"></i>
-                <a class="nav-link active" aria-current="page" href="#" title="You can update the Profile">
+                <a class="nav-link active" aria-current="page" href="" title="You can update the Profile">
                     Hi <?php echo $teacher ?>
                 </a>
             </div>

@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['userid'] = $userId; 
 
                 if ($role == 'admin') {
+                    
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');

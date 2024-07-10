@@ -1,7 +1,9 @@
 <?php
 // session_start(); 
 include('dbconnect.php');
-
+if (!isset($_SESSION['userid'])) {
+    header('Location: login.php');
+}
 $id = $_SESSION['userid'];
 
 $conn = new mysqli("localhost", "root", "", "studentdb");

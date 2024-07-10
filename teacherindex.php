@@ -1,6 +1,7 @@
 <?php
 include('dbconnect.php');
 session_start();
+// echo isset($_SESSION['userid']);
 if(!isset($_SESSION['userid'])){
  header('Location: Login.php');
 }

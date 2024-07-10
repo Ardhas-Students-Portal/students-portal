@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
-    
     $sql = "Update user set userid = ?, name = ?,  email = ?, phone = ?  where Userid = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "issss", $userid, $name, $email, $phone, $userid);
