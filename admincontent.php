@@ -39,7 +39,7 @@ session_start();
                         <h5 class="card-title">Teacher Registration</h5>
                         <p class="card-text">Please press the below button to register the teacher.</p>
                         <div class="d-flex ">
-                            <a href="teacher_register.php" class="btn btn-primary">Register</a>
+                            <a href="teacher_register.php" class="btn btn-primary" id="btn">Register</a>
                         </div>
                     </div>
                 </div>
