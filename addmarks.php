@@ -1,6 +1,6 @@
 <?php
-$rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : '';
-$name = isset($_GET['name']) ? $_GET['name'] : '';
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -12,10 +12,8 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
     <title>Document</title>
     <link rel="stylesheet" href="./assets/adminstyle.css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-   
+    <style>
+    </style>
 </head>
 
 <body>
@@ -25,6 +23,7 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
         </div>
         <div class="content flex-grow-1 ">
             <?php include('admin_Stuheader.php'); ?>
+
             <div class="d-flex justify-content-center py-3">
                 <form id="markEntryForm" action="studentmark.php" method="post" class="col-md-10 col-8">
                     <div class="text-center pb-5 fs-3 text">Add Students mark</div>
@@ -176,7 +175,7 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
                         alpha: "Please enter only alphabets and spaces"
                     },
                     class: "Please select a class",
-                    exam: "Please select an exam",
+                    exam: "Please select a exam",
                     tamil: {
                         required: "Please enter marks for Tamil",
                         number: "Please enter a valid number",
@@ -228,20 +227,21 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
             });
 
             function calculateTotal() {
-                let total = 0;
-                $('.subject-mark').each(function() {
-                    let value = $(this).val();
-                    total += parseFloat(value) || 0;
-                });
-                $('#totalMarks').val(total);
-                let percentage = (total / 600) * 100;
-                $('#totalpercentage').val(percentage.toFixed(2));
-            }
-
-            $('.subject-mark').on('input', function() {
-                calculateTotal();
+            let total = 0;
+            $('.subject-mark').each(function() {
+                let value = $(this).val();
+                total += parseFloat(value) || 0;
             });
+            $('#totalMarks').val(total);
+            let percentage = (total / 600) * 100;
+            $('#totalpercentage').val(percentage.toFixed(2));
+        }
+
+        $('.subject-mark').on('input', function() {
+            calculateTotal();
         });
+    });
+    
     </script>
 </body>
 
