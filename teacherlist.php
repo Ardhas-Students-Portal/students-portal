@@ -69,7 +69,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="bi bi-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search with Roll No">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search with Name">
                     <button class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
@@ -77,37 +77,36 @@
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Register number</th>
-                        <th scope="col">Class</th>
-                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">Teacher</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Phone number</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Subject</th>
                     </tr>
                 </thead>
                 <tbody id="studentTableBody">
                     <?php
                     include('dbconnect.php');
-                    $sql = "SELECT * FROM `studentdata`";
+                    $sql = "SELECT * FROM `teachers`";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             $name = $row['name'];
-                            $regno = $row['registernumber'];
-                            $class = $row['class'];
-                            $dateofbirth = $row['dateofbirth'];
+                            $email = $row['email'];
                             $gender = $row['gender'];
-                            $teacher = $row['teacher'];
+                            $dateofbirth = $row['dob'];
+                            $ph_no = $row['phno'];
                             $address = $row['address'];
-
+                            $subject = $row['subject'];
                             echo '<tr>
                             <td  scope="row">' . $name . '</td>
-                            <td>' . $regno . '</td>
-                            <td>' . $class . '</td>
-                            <td>' . $dateofbirth . '</td>
+                            <td>' . $email . '</td>
                             <td>' . $gender . '</td>
-                            <td>' . $teacher . '</td>
+                            <td>' . $dateofbirth . '</td>
+                            <td>' . $ph_no . '</td>
                             <td>' . $address . '</td>
+                            <td>' . $subject . '</td>
                         </tr>';
                         }
                     }
@@ -125,7 +124,7 @@
             var tr = table.getElementsByTagName('tr');
 
             for (var i = 0; i < tr.length; i++) {
-                var td = tr[i].getElementsByTagName('td')[1];
+                var td = tr[i].getElementsByTagName('td')[0];
                 if (td) {
                     var txtValue = td.textContent || td.innerText;
                     if (txtValue.toLowerCase().indexOf(input) > -1) {

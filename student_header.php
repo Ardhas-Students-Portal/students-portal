@@ -22,8 +22,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?= ($current_page == 'student_header_main.php') ? 'active' : '' ?>"
-                            href="student_header_main.php"><i class="bi bi-person-circle pe-2"></i>Profile</a>
+                        <a class="nav-link <?= ($current_page == 'studentdashboard.php') ? 'active' : '' ?>"
+                            href="studentdashboard.php"><i class="bi bi-person-circle pe-2"></i>Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($current_page == 'student_header.php') ? 'active' : '' ?>"
@@ -50,7 +50,7 @@
             ?>
 
             <ul class="list-unstyled px-2">
-                <li class="<?= ($current_page == 'student_header_main.php') ? 'active' : '' ?>"><a href="student_header_main.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
+                <li class="<?= ($current_page == 'studentdashboard.php') ? 'active' : '' ?>"><a href="studentdashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
                 <li class="<?= ($current_page == 'student_header.php') ? 'active' : '' ?>"><a href="student_header.php" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Marks</a></li>
                 <li class="<?= ($current_page == 'student_logout.php') ? 'active' : '' ?>"><a href="student_logout.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
             </ul>

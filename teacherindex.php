@@ -15,9 +15,7 @@
 <?php
     include('dbconnect.php');
     session_start();
-
-    $userid_teacher = $_GET['userid'];
-
+    $userid_teacher   = $_SESSION['userid'];
         $sql = "SELECT name FROM teachers WHERE id = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $userid_teacher);
@@ -166,6 +164,4 @@
 </body>
 
 </html>
-<?php
-$conn->close();
-?>
+

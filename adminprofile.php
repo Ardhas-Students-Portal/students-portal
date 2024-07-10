@@ -1,8 +1,8 @@
 <?php
 session_start();
+$userid = $_SESSION['userid'];
 include('dbconnect.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $userid = $_SESSION['userid'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
-    $sql = "Update `user` set `userid` = ?, `name` = ?,  `email` = ?, `phone` = ?  where `Userid` = ?";
+    $sql = "Update user set userid = ?, name = ?,  email = ?, phone = ?  where Userid = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "issss", $userid, $name, $email, $phone, $userid);
     $result = mysqli_stmt_execute($stmt);
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <h3 class="text-center pt-3">Profile Update</h3>
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="form-label">UserId</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" disabled placeholder="userId" name="userid" value="<?php echo $adminid ?>">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" disabled placeholder="userId" name="userid" value="<?php echo $userid ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput2" class="form-label">Name</label>

@@ -30,38 +30,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $user = mysqli_fetch_assoc($result);
         if ($user['Userid'] == $userId && password_verify($password, $user['Password'])) {
-            $_SESSION['role'] = $role;
-            $_SESSION['userId'] = $userId;
             $role_db = $user['Role'];
             if ($role == $role_db) {
+                $_SESSION['role'] = $role;
+                $_SESSION['userid'] = $userId; 
+
                 if ($role == 'admin') {
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header('Location: admincontent.php');
+                    header("Location: admincontent.php");
                 } else if ($role == 'student') {
                     if (isset($_POST['remember'])) {
-                        $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header("Location: studentdashboard.php?userid=$userId");
+                    header("Location: studentdashboard.php");
                 } else {
                     if (isset($_POST['remember'])) {
-                        // $_SESSION['userid'] = $userId;
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
                         setcookie('role', $role, time() + 86400, '/');
                     }
-                    header("Location: teacherindex.php?userid=$userId");
+                    header("Location: teacherindex.php");
                 }
             } else {
-               $_SESSION['error-message'] = 'Role mismatch';
-               header('Location: login.php');
-               exit();
+                $_SESSION['error-message'] = 'Role mismatch';
+                header('Location: login.php');
+                exit();
             }
         } else {
             $_SESSION['error-message'] = 'Invalid userId or Password';
