@@ -53,7 +53,9 @@ session_start();
                             <!-- PHP code to fetch and display records -->
                             <?php
                             include('dbconnect.php');
-
+                            if(!isset($_SESSION['teacheruserid'])){
+                                header('Location: Login.php');
+                            }
                             $sql = "SELECT * FROM student_marks";
                             $result = $conn->query($sql);
 
