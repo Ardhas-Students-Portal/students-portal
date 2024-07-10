@@ -16,7 +16,7 @@
         <div class="sidebar" id="side_nav">
             <div class="header-box px-3 pt-3 pb-4 d-flex justify-content-between">
                 <h1 class="fs-4"><span class="text-white rounded shadow px-2 me-2">Student Portal</span></h1>
-                <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="bi bi-list"></i></button>
+                <button class="btn d-md-none d-block close-btn px-1 py-0"><i class="bi bi-list"></i></button>
             </div>
 
             <?php

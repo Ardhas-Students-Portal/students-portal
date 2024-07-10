@@ -1,4 +1,5 @@
 <?php 
+$teacher = $_SESSION['teacher'];
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
             <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                 <i class="bi bi-person-circle pe-1"></i>
                 <a class="nav-link active" aria-current="page" href="adminprofile.php" title="You can update the Profile">
-                    Hi Admin 
+                    Hi <?php echo $teacher ?>
                 </a>
             </div>
         </div>

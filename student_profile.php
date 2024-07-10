@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include('dbconnect.php');
 
 if (!isset($_SESSION['userid'])) {
