@@ -82,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
                     <label for="totalpercentage">Total Percentage</label>
                     <input type="number" class="form-control" id="totalpercentage" name="totalpercentage" value="<?php echo $row['totalpercentage']; ?>" readonly>
                 </div>
-
+                
+                <a href="viewmarks.php" class="btn btn-primary">Back</a>
                 <button type="submit" class="btn btn-primary">Update Marks</button>
             </form>
         </div>

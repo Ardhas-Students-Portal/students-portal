@@ -263,26 +263,26 @@ hr.h-color {
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="createpassword">Create Password</label>
-                                <input type="password" class="form-control" id="createpassword" name="createpassword" placeholder="Enter your Password">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-eye-slash" id="createpassword-icon" style="cursor: pointer;"></i>
-                                    </span>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="createpassword" name="createpassword" placeholder="Enter your Password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-eye-slash" id="createpassword-icon" style="cursor: pointer;"></i>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="error-message" id="createpassword-error">Please enter a valid password.</div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="confirmpassword">Confirm Password</label>
-                                <div class="form-group">
+                                <div class="input-group">
                                     <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Re-Enter your password">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                          <i class="bi bi-eye-slash" id="confirmpassword-icon" style="cursor: pointer;"></i>
-                                      </span>
+                                            <i class="bi bi-eye-slash" id="confirmpassword-icon" style="cursor: pointer;"></i>
+                                        </span>
                                     </div>
-
                                 </div>
-                                
                                 <div class="error-message" id="confirmpassword-error">Passwords do not match.</div>
                             </div>
                         </div>
@@ -298,6 +298,7 @@ hr.h-color {
                                 <div class="error-message" id="dateofbirth-error">Please enter a valid date of birth</div>
                             </div>
                         </div>
+    
                         <div class="form-group">
                             <label for="gender">Gender</label><br>
                             <div class="form-check form-check-inline">
