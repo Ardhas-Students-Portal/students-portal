@@ -23,7 +23,7 @@
     font-weight: 900;
     color: #e1e1e9;
     line-height: 1em;
-    opacity: .6;2
+    opacity: .6;
     margin: 0;
     position: relative;
     z-index: -1;}
