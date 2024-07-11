@@ -1,8 +1,17 @@
 <?php 
+    include('dbconnect.php');
+    include('functions.php'); 
     session_start();
-    $studentname = $_SESSION['stu_name'];
     if (!isset($_SESSION['userid'])) {
         header('Location: login.php');
+        exit();
+    }
+    $userid = $_SESSION['userid'];
+    $studentname = fetchStudentName($conn, $userid);
+    if ($studentname) {
+        $_SESSION['stu_name'] = $studentname;
+    } else {
+        $_SESSION['stu_name'] = 'Unknown';
     }
 ?>
 

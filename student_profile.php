@@ -42,7 +42,7 @@ $result = $stmt->get_result();
     <div class="container-fluid m-1">
     <!-- <div class="d-flex justify-content-center flex-row"> -->
         <h1 class="form-header text-center p-3">Profile</h1>
-        <table class="display table table-bordered w-75">
+        <table class="display table table-bordered w-50">
             <thead>
                 <tr>
                     <th>Field</th>

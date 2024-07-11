@@ -15,10 +15,8 @@
 
       .footer {
         background-color: #000;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-
-
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
       }
 
       .footer-content h2 {
@@ -45,10 +43,16 @@
       .footer hr {
         background-color: #fff;
       }
+      @media (max-width: 768px){
+        .footer-map{
+          width: 180px;
+          height: 180px;
+        }
+      }
     </style>
 
   <body>
-    <footer class="footer pt-5 pl-5 pr-5 pb-3">
+    <footer class="footer pt-5 pb-3">
       <div class="container">
         <div class="row">
           <div class="col-md-3">
@@ -99,8 +103,9 @@
 
 
           </div>
-          <div class="col-md-3">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15661.253919239667!2d76.9982464!3d11.08999795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1720427069877!5m2!1sen!2sin" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="col-md-3" 
+          >
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15661.253919239667!2d76.9982464!3d11.08999795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1720427069877!5m2!1sen!2sin" width="300" height="250" style="border:0;" allowfullscreen="" class='footer-map' loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         
         </div>
