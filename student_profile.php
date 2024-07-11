@@ -35,14 +35,21 @@ $result = $stmt->get_result();
         /* table,tr,th,td{
             border: 1px solid black;
         } */
+         #container{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+         }
+
     </style>
 </head>
 <body>
    
-    <div class="container-fluid m-1">
+    <div class="container-fluid m-1" id="container">
     <!-- <div class="d-flex justify-content-center flex-row"> -->
         <h1 class="form-header text-center p-3">Profile</h1>
-        <table class="display table table-bordered w-75">
+        <table class="display table table-striped table-bordered w-75">
             <thead>
                 <tr>
                     <th>Field</th>
