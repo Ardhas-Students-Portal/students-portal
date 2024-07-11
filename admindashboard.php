@@ -1,3 +1,11 @@
+<?php 
+// session_start();
+// if (!isset($_SESSION['userid'])) {
+//     header('Location: home.php');
+//     exit();
+// }    
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +36,7 @@
                 <li class="<?= ($current_page == 'adminprofile.php') ? 'active' : '' ?>"><a href="adminprofile.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
                 <li class="<?= ($current_page == 'teacherlist.php') ? 'active' : '' ?>"><a href="teacherlist.php" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Teacher</a></li>
                 <li class="<?= ($current_page == 'studentlist.php') ? 'active' : '' ?>"><a href="studentlist.php" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-file-alt pe-2"></i>Student</a></li>
-                
+                <li class="<?= ($current_page == 'logout.php') ? 'active' : '' ?>"><a href="logout.php" class="text-decoration-none px-3 py-2 d-block"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
             </ul>
             <hr class="h-color mx-2">
         </div>
@@ -49,6 +57,7 @@
             $('.close-btn').on('click', function(){
                 $('.sidebar').removeClass('active');
             });
+            
         });
     </script>
 </body>

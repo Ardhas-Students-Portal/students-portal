@@ -1,7 +1,17 @@
 <?php 
+    include('dbconnect.php');
+    include('functions.php'); 
     session_start();
     if (!isset($_SESSION['userid'])) {
         header('Location: login.php');
+        exit();
+    }
+    $userid = $_SESSION['userid'];
+    $studentname = fetchStudentName($conn, $userid);
+    if ($studentname) {
+        $_SESSION['stu_name'] = $studentname;
+    } else {
+        $_SESSION['stu_name'] = 'Unknown';
     }
 ?>
 
@@ -38,8 +48,8 @@
             <hr class="h-color mx-2">
         </div>
         <div class="content flex-grow-1">
-        <nav class="navbar navbar-expand-md w-100" style="background-color:black">
-        <div class="container-fluid d-flex justify-content-between">
+        <nav class="navbar navbar-expand-md w-100" style="background-color:black" >
+        <div class="container-fluid d-flex justify-content-between" style="padding:18px">
                 <div class="d-flex justify-content-between d-md-none d-block">
                     <a class="navbar-brand text-white" href="#">Navbar</a>
                     <button class="btn px-1 py-0 open-btn text-white"><i class="bi bi-list"></i></button>
@@ -47,7 +57,7 @@
                 <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                     <i class="bi bi-person-circle pe-1"></i>
                     <a class="nav-link active" aria-current="page" href="studentdashboard.php" title="">
-                        Hi <?php echo $_SESSION['stu_name'] ?> 
+                        Hi <?php echo $studentname ?> 
                     </a>
                 </div>
             </div>

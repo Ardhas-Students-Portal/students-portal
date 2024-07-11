@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(!isset($_SESSION['userid'])){
+    header('Location: home.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

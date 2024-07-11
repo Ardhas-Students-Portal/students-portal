@@ -16,6 +16,7 @@ $row = mysqli_fetch_assoc($result);
 if ($row) {
   $teacher = $row["name"];
   $_SESSION['teacher'] = $teacher;
+  // echo  $_SESSION['teacher'];
   if ($teacher) {
     $sql2 = "SELECT registernumber, name, class, gender, teacher, parentnumber, address FROM studentdata WHERE teacher = ?";
     $stmt2 = mysqli_prepare($conn, $sql2);
@@ -49,7 +50,7 @@ mysqli_close($conn);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>studentlist</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- <link rel="stylesheet" href="style.css"> -->
@@ -137,7 +138,7 @@ mysqli_close($conn);
   if ($result2->num_rows > 0) {
       while ($row2 = $result2->fetch_assoc()) {
           echo "<tr>";
-          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) . "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
+          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) ."&teacher=" . htmlspecialchars($row2["teacher"]). "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
           echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
           echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
           echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";

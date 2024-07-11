@@ -2,7 +2,7 @@
 // session_start();
 $teacher = $_SESSION['teacher'];
 if(!isset($_SESSION['userid'])){
-    header('Location: Login.php');
+    header('Location: home.php');
 }
 ?>
 

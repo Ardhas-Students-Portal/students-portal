@@ -438,57 +438,65 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
  
   <script>
-    $(document).ready(function() {
-      $("#contactForm").validate({
-      
-        rules: {
-          firstname: {
-            required: true,
-            minlength: 2
-          },
-          email: {
-            required: true,
-            email: true
-          },
-          message: {
-            required: true,
-            minlength: 5
-          }
-        },
-        messages: {
-          firstname: {
-            required: "Please enter your name",
-            minlength: "Your name must consist of at least 3 characters"
-          },
-          email: {
-            required: "Please enter your email",
-            email: "Please enter a valid email address"
-          },
-          message: {
-            required: "Please enter a message",
-            minlength: "Your message must be at least 5 characters long"
-          }
-        },
-        // errorElement: "em",
-        // errorPlacement: function (error, element) {
-        //   error.addClass("invalid-feedback");
+  $(document).ready(function() {
+    $("#contactForm").validate({
+      rules: {
+        firstname: {
+          required: true,
+          minlength: 2,
+          lettersonly: true  // Custom method to allow letters only
 
-        //   if (element.prop("type") === "checkbox") {
-        //     error.insertAfter(element.next("label"));
-        //   } else {
-        //     error.insertAfter(element);
-        //   }
-        // },
-        // highlight: function (element, errorClass, validClass) {
-        //   $(element).addClass("is-invalid").removeClass("is-valid");
-        // },
-        // unhighlight: function (element, errorClass, validClass) {
-        //   $(element).addClass("is-valid").removeClass("is-invalid");
-        // }
-      });
-     
+        },
+        email: {
+          required: true,
+          email: true,
+          pattern:true
+        },
+        message: {
+          required: true,
+          minlength: 5
+        }
+      },
+      messages: {
+        firstname: {
+          required: "Please enter your name",
+          minlength: "Your name must consist atleast 2 characters",
+          lettersonly: "Please enter alphabets only"
+
+        },
+        email: {
+          required: "Please enter your email",
+          email: "Please enter a valid email address",
+          pattern:"Please enter a valid email address"
+        },
+        message: {
+          required: "Please enter a message",
+          minlength: "Your message must be atleast 5 characters long"
+        }
+      },
+      errorElement: "div",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback");
+        error.insertAfter(element);
+      },
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid").removeClass("is-valid");
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-valid").removeClass("is-invalid");
+      }
     });
-  </script>
+    $.validator.addMethod("lettersonly", function(value, element) {
+      return this.optional(element) || /^[a-zA-Z\s]*$/i.test(value);
+    }, "Letters only please");
+    $.validator.addMethod("pattern", function(value, element) {
+      return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+    }, "Please enter valid email address");
+
+
+  });
+</script>
+
 
 
 
