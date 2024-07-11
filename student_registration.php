@@ -1,9 +1,11 @@
 <?php
 include('dbconnect.php');
 session_start();
-if(!isset($_SESSION['userid'])){
+if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
+    exit();
 }
+
 $teacherQuery = "SELECT name FROM teachers";
 $teacherResult = $conn->query($teacherQuery);
 $teachers = [];

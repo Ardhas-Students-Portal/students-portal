@@ -126,68 +126,48 @@
   }
 }
 
-
-
-.carousel-caption h1 {
-    top: 50px;
-    bottom: auto;
-    font-size:30px;
-
-    
-}
-@media screen and (min-width: 760px) {
-
-.carousel-caption h1 {
-    font-size:40px;
-
-},
 .carousel-caption{
-  top:200px;
-
+  top: 60px;
 }
-}
-@media screen and (min-width: 1000px) {
 
 .carousel-caption h1{
-    font-size:40px;
-
-},
-.carousel-caption{
-  top:800px;
-
-}
-}
-@media screen and (min-width: 310px) {
-
-.carousel-caption h1{
-  font-size:15px;
-
-},
-.carousel-caption{
-top:400px;
-}
-}
-@media screen and (min-width: 350px) {
-
-.carousel-caption h1{
-  font-size:25px;
-
-},
-.carousel-caption{
-top:400px;
+  font-size: 15px;
 }
 
-}
 @media screen and (min-width: 425px) {
-
-.carousel-caption h1{
-  font-size:30px;
-
-},
-.carousel-caption{
-top:600px;
+  .carousel-caption{
+    top: 80px;
+  }
+  .carousel-caption h1{
+  font-size: 25px;
 }
 }
+@media screen and (min-width: 375px) {
+  .carousel-caption{
+    top: 70px;
+  }
+  .carousel-caption h1{
+  font-size: 22px;
+}
+}
+@media screen and (min-width: 768px) {
+  .carousel-caption{
+    top: 190px;
+  }
+  .carousel-caption h1{
+  font-size: 35px;
+}
+}
+@media screen and (min-width: 1024px) {
+  .carousel-caption{
+    top: 250px;
+  }
+  .carousel-caption h1{
+  font-size: 40px;
+}
+}
+
+
 .modal-body img{
 
 width:450px;height:500px;}
@@ -205,7 +185,6 @@ width:450px;height:500px;}
 
 }
 } */
-
 
     </style>
 
@@ -232,10 +211,8 @@ width:450px;height:500px;}
       Your <span class="text-primary">Inspiration</span><br>
       <span class="text-secondary"> Partner for </span><span>Growth.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md"  data-bs-toggle="modal" data-bs-target="#exampleModal">Admission Opens</button>
-
-<!-- Modal -->
- <div class="container">
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <div class="container">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -262,7 +239,7 @@ width:450px;height:500px;}
       Your <span class="text-primary">Presence</span><br>
       <span class="text-secondary"> Makes Things </span><span> Different.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md">Class Rooms</button>
+    <button type="button" class="btn btn-primary">Class Rooms</button>
   </div>
 </div>
 
@@ -273,7 +250,7 @@ width:450px;height:500px;}
       For <span class="text-primary">Future</span><br>
       <span class="text-secondary"> Leader </span><span> Enhancing.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md">Library</button>
+    <button type="button" class="btn btn-primary btn">Library</button>
   </div>
 </div>
 

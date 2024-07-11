@@ -3,7 +3,12 @@
 // if (!isset($_SESSION['userid'])) {
 //     header('Location: home.php');
 //     exit();
-// }    
+// }  
+if (!$_SESSION['adminisloggedin']) {
+    header('Location: home.php');
+    exit();
+}
+ 
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +62,7 @@
             $('.close-btn').on('click', function(){
                 $('.sidebar').removeClass('active');
             });
-            
+
         });
     </script>
 </body>

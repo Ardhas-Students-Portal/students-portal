@@ -1,10 +1,10 @@
 <?php
 include('dbconnect.php');
 session_start();
-if (!isset($_SESSION['userid'])) {
-    header('Location: home.php');
+if(!$_SESSION['teacherisloggedin']){
+    header('Location: Login.php');
     exit();
-}
+   }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $id = $_GET['id'];

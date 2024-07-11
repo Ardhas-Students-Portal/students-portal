@@ -1,7 +1,8 @@
 <?php 
 session_start();
-if(!isset($_SESSION['userid'])){
+if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
+    exit();
 }
 
 ?>

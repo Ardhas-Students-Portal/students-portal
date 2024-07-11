@@ -2,10 +2,11 @@
 session_start();
 include('dbconnect.php');
 
-if (!isset($_SESSION['userid'])) {
+if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
     exit();
 }
+
 
 $userid = $_SESSION['userid'];
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';

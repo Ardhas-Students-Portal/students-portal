@@ -2,9 +2,10 @@
 include('dbconnect.php');
 session_start();
 // echo isset($_SESSION['userid']);
-if(!isset($_SESSION['userid'])){
- header('Location: Login.php');
-}
+if(!$_SESSION['teacherisloggedin']){
+  header('Location: home.php');
+  exit();
+ }
 $userid_teacher   = $_SESSION['userid'];
 $sql = "SELECT name FROM teachers WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
