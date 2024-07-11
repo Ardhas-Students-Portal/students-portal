@@ -510,7 +510,7 @@ top:600px;
           required: true,
           minlength: 2,
           lettersonly: true,
-          noSpace:true
+          noMiddleSpace:true
         },
         email: {
           required: true,
@@ -539,7 +539,7 @@ top:600px;
         message: {
           required: "Please enter a message",
           minlength: "Your message must be atleast 5 characters long",
-          noSpace:"Please enter some message"
+          noMiddleSpace:"Please enter some message"
 
         }
       },
@@ -561,9 +561,12 @@ top:600px;
     $.validator.addMethod("pattern", function(value, element) {
       return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter valid email address");
-    $.validator.addMethod("noSpace", function(value, element) { 
+    $.validator.addMethod("noMiddleSpace", function(value, element) { 
     return value.indexOf(" ") < 0 && value != ""; 
   }, "Space are not allowed");
+  $.validator.addMethod("noSpace", function(value, element) {
+      return this.optional(element) || /^(?!\s).*$/i.test(value);
+    }, "Please enter valid email address");
 
 
   });
