@@ -188,7 +188,23 @@ top:400px;
 top:600px;
 }
 }
+.modal-body img{
 
+width:450px;height:500px;}
+@media screen and (min-width: 320px) {
+
+.modal-body img{
+  width:250px;height:350px;
+
+}
+}
+/* @media screen and (max-width: 375px) {
+
+.modal-body img{
+  width:300px;height:350px;
+
+}
+} */
 
 
     </style>
@@ -216,7 +232,26 @@ top:600px;
       Your <span class="text-primary">Inspiration</span><br>
       <span class="text-secondary"> Partner for </span><span>Growth.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <button type="button" class="btn btn-primary btn-md"  data-bs-toggle="modal" data-bs-target="#exampleModal">Admission Opens</button>
+
+<!-- Modal -->
+ <div class="container">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="exampleModalLabel">Admission Opens</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <img src="assets/images/admission.png">
+      </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </div>
 
