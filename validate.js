@@ -12,6 +12,8 @@ $(document).ready(function(){
     $('#id-valid').css("font-size","13px");
     
 
+   
+
     function validateID() {
         var id = $('#userid').val().trim();
         var idRegex = /^[0-9]{3}$/; 
@@ -196,9 +198,10 @@ $(document).ready(function(){
         if(inputDate){
             var currentDate = new Date();
             var selectedDate = new Date(inputDate);
-    
+            currentDate.setHours(0, 0, 0, 0);
+            selectedDate.setHours(0, 0, 0, 0);
             // Check if the selected date is in the future
-            if (selectedDate > currentDate) {
+            if (selectedDate >= currentDate) {
                 $('#dob-valid').text('Please select a date not in the future');
                 $('#dob-valid').css('color','red');
                 return false;
@@ -365,9 +368,12 @@ $(document).ready(function(){
         }else{
             $('#subject-error').text('');
         }
-        if(validation == true){
-            this.submit();
-            alert("Teacher Registration Completed");
+        if(validation){
+            $(this).unbind('submit').submit();
+           
+            // this.submit();
+        } else {
+            alert("Validation failed. Please correct the errors and try again.");
         }
     });
 });
