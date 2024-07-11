@@ -89,7 +89,7 @@ $(document).ready(function(){
     $('#password-error').css("font-size","13px");
     function validatePassword() {
         var password = $('#password').val().trim();
-        const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         if (!passwordRegex.test(password)) {
             $('#password-valid').text('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character');
             $('#password-valid').css("color","red");
@@ -377,3 +377,4 @@ $(document).ready(function(){
         }
     });
 });
+
