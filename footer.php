@@ -108,8 +108,8 @@
               </a>
               </li>
               <li class="list-inline-item">
-                <a href="#">
-                <i class="fa-brands fa-whatsapp"></i>  </a>            
+                <a href="https://www.linkedin.com/company/ardhas-technology/posts/?feedView=all">
+                <i class="fa-brands fa-linkedin"></i>  </a>            
               </li>
             </ul>
        
