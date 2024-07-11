@@ -3,6 +3,12 @@
 //     session_start();
 // }
 
+if (!$_SESSION['adminisloggedin']) {
+    header('Location: home.php');
+    exit();
+}
+
+
 
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
 ?>

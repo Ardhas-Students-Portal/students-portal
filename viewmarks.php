@@ -1,8 +1,9 @@
 <?php 
 session_start();
-if(!isset($_SESSION['userid'])){
+if(!$_SESSION['teacherisloggedin']){
     header('Location: Login.php');
-}   
+    exit();
+   }  
 $teacher =  $_SESSION['teacher']; 
 ?>
 <!DOCTYPE html>

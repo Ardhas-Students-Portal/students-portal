@@ -6,6 +6,9 @@ include('functions.php');
 $userId = '';
 $password = '';
 $role = '';
+$_SESSION['adminisloggedin'] = false;
+$_SESSION['studentisloggedin'] = false;
+$_SESSION['teacherisloggedin'] = false;
 
 if (isset($_COOKIE['userId']) && isset($_COOKIE['password'])) {
     $userId = $_COOKIE['userId'];
@@ -34,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $role_db = $user['Role'];
             if ($role == $role_db) {
                 $_SESSION['role'] = $role;
-                $_SESSION['userid'] = $userId; 
+                $_SESSION['userid'] = $userId;
 
                 if ($role == 'admin') {
-                    
+                    $_SESSION['adminisloggedin'] = true;
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
@@ -46,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     header("Location: admincontent.php");
                 } else if ($role == 'student') {
                     $_SESSION['stu_name'] = fetchStudentName($conn, $userid);
+                    $_SESSION['studentisloggedin'] = true;
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
@@ -53,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                     header("Location: studentdashboard.php");
                 } else {
+                    $_SESSION['teacherisloggedin'] = true;
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');
@@ -140,7 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <select class="form-select form-select mb-3" aria-label="Large select example" id="role-select" name="role">
                             <option value="admin" <?php echo ($role === 'admin') ? 'selected' : ''; ?>>Admin</option>
                             <option value="teacher" <?php echo ($role === 'teacher') ? 'selected' : ''; ?>>Teacher</option>
-                            <option value="student" <?php echo ($role === 'student') ? 'selected' : ''; ?>>Student</option>                        </select>
+                            <option value="student" <?php echo ($role === 'student') ? 'selected' : ''; ?>>Student</option>
+                        </select>
                     </div>
 
                     <div class="form-check">
@@ -149,10 +155,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div id="message" class="text-center text-danger fs-6">
                         <?php
-                            if(isset($_SESSION['error-message'])){
-                                echo '<p>' .$_SESSION['error-message'] . '</p>';
-                                unset($_SESSION['error-message']);
-                            }
+                        if (isset($_SESSION['error-message'])) {
+                            echo '<p>' . $_SESSION['error-message'] . '</p>';
+                            unset($_SESSION['error-message']);
+                        }
                         ?>
                     </div>
                     <!-- <div class="col md-4">

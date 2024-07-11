@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['userid'])) {
+if(!$_SESSION['teacherisloggedin']){
   header('Location: home.php');
   exit();
-}
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">

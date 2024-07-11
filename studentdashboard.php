@@ -2,8 +2,8 @@
     include('dbconnect.php');
     include('functions.php'); 
     session_start();
-    if (!isset($_SESSION['userid'])) {
-        header('Location: login.php');
+    if (!$_SESSION['studentisloggedin']) {
+        header('Location: home.php');
         exit();
     }
     $userid = $_SESSION['userid'];

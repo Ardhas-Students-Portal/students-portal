@@ -1,10 +1,11 @@
 <?php 
 session_start();
 // echo $_SESSION['userid'];
-if (!isset($_SESSION['userid'])) {
+if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
     exit();
 }
+
 
 ?>
 
