@@ -45,6 +45,24 @@
       .footer hr {
         background-color: #fff;
       }
+      @media (min-width: 768px) {
+      iframe {
+        width: 150px; 
+        height: 200px; 
+      }
+    }
+    @media (min-width: 1024px) {
+      iframe {
+        width: 250px; 
+        height: 250px; 
+      }
+    }
+    @media (min-width: 1440px) {
+      iframe {
+        width: 300px; 
+        height: 250px; 
+      }
+    }
     </style>
 
   <body>
@@ -71,7 +89,7 @@
               <li>Phone: 8821577749</li>
               <li>Address: Chill Sez IT Park, Coimbatore</li>
             </ul></div>
-            <div class="col-md-3">
+            <div class="col-md-2">
             <h5>FOLLOW US ON</h5>
             <ul class="list-inline footer-links">
               <li class="list-inline-item">
@@ -99,7 +117,7 @@
 
 
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 map-iframe">
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15661.253919239667!2d76.9982464!3d11.08999795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1720427069877!5m2!1sen!2sin" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         
