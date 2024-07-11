@@ -19,17 +19,17 @@
 
   }
   .cat h3{
-    font-size:80px;
+    font-size:60px;
     font-weight: 900;
     color: #e1e1e9;
     line-height: 1em;
-    opacity: .6;
+    opacity: .6;2
     margin: 0;
     position: relative;
     z-index: -1;}
   .cat p{
-    font-size: 30px;
-    margin-top: -40px;
+    font-size: 0px;
+    margin-top: -30px;
     font-weight: 600;
     line-height: 1.4em;
     padding-bottom: 10px;
