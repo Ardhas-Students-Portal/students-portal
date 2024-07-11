@@ -219,7 +219,6 @@ $(document).ready(function(){
 
     
     $('form').on('submit',function(event){
-        event.preventDefault();
         var validation = true;
 
         var id = $('#userid').val().trim();
@@ -369,11 +368,13 @@ $(document).ready(function(){
             $('#subject-error').text('');
         }
         if(validation){
-            $(this).unbind('submit').submit();
-           
+            // $(this).unbind('submit').submit();
+           return true;
             // this.submit();
         } else {
+            event.preventDefault();
             alert("Validation failed. Please correct the errors and try again.");
+            return false;
         }
     });
 });
