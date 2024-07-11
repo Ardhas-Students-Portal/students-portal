@@ -211,7 +211,7 @@ width:450px;height:500px;}
       Your <span class="text-primary">Inspiration</span><br>
       <span class="text-secondary"> Partner for </span><span>Growth.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Admission Opens</button>
     <div class="container">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -239,8 +239,25 @@ width:450px;height:500px;}
       Your <span class="text-primary">Presence</span><br>
       <span class="text-secondary"> Makes Things </span><span> Different.</span>
     </h1>
-    <button type="button" class="btn btn-primary">Class Rooms</button>
+    <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModalclassroom">Class Rooms</button>
+
+<div class="container">
+<div class="modal fade" id="exampleModalclassroom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title text-black" id="exampleModalLabel">Class Rooms</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
+  <div class="modal-body">
+  <img src="assets/images/classroom.png">
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
 </div>
 
 <div class="carousel-item">
@@ -250,7 +267,25 @@ width:450px;height:500px;}
       For <span class="text-primary">Future</span><br>
       <span class="text-secondary"> Leader </span><span> Enhancing.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn">Library</button>
+    <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModallib">E-Library</button>
+
+    <div class="container">
+<div class="modal fade" id="exampleModallib" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="exampleModalLabel">E-Library</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <img src="assets/images/library.png">
+      </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </div>
 
