@@ -9,10 +9,7 @@
 </head>
 <style>
 
-.carousel-caption {
-    top: 250px;
-    bottom: auto;
-}
+
 
 
 
@@ -129,6 +126,71 @@
   }
 }
 
+
+
+.carousel-caption h1 {
+    top: 50px;
+    bottom: auto;
+    font-size:30px;
+
+    
+}
+@media screen and (min-width: 760px) {
+
+.carousel-caption h1 {
+    font-size:40px;
+
+},
+.carousel-caption{
+  top:200px;
+
+}
+}
+@media screen and (min-width: 1000px) {
+
+.carousel-caption h1{
+    font-size:40px;
+
+},
+.carousel-caption{
+  top:800px;
+
+}
+}
+@media screen and (min-width: 310px) {
+
+.carousel-caption h1{
+  font-size:15px;
+
+},
+.carousel-caption{
+top:400px;
+}
+}
+@media screen and (min-width: 350px) {
+
+.carousel-caption h1{
+  font-size:25px;
+
+},
+.carousel-caption{
+top:400px;
+}
+
+}
+@media screen and (min-width: 425px) {
+
+.carousel-caption h1{
+  font-size:30px;
+
+},
+.carousel-caption{
+top:600px;
+}
+}
+
+
+
     </style>
 
 <body>
@@ -147,36 +209,39 @@
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/images/carousel3cam.png" class="d-block w-100" alt="..." style="max-height: 720px;">
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class="mt-5 front-content">Your <span style="color: #ffff;font-weight: bolder;font-size:50px">Inspiration</span><br><span style="font-weight: lighter;"> Partner for </span><span>Growth.</span></h1>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+  <div class="carousel-item active">
+  <img src="assets/images/carousel3cam.png" class="w-100" alt="..." style="max-height: 720px;">
+  <div class="carousel-caption">
+    <h1 class="fw-bold">
+      Your <span class="text-primary">Inspiration</span><br>
+      <span class="text-secondary"> Partner for </span><span>Growth.</span>
+    </h1>
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+  </div>
+</div>
 
-<!-- dialog box -->
+<div class="carousel-item">
+  <img src="assets/images/carousel1can.png" class="d-block w-100" alt="..." style="max-height: 720px;"> 
+  <div class="carousel-caption">
+    <h1 class="fw-bold">
+      Your <span class="text-primary">Presence</span><br>
+      <span class="text-secondary"> Makes Things </span><span> Different.</span>
+    </h1>
+    <button type="button" class="btn btn-primary btn-md">Class Rooms</button>
+  </div>
+</div>
 
+<div class="carousel-item">
+  <img src="assets/images/carousel3.png" class="d-block w-100" alt="..." style="max-height: 720px;">
+  <div class="carousel-caption">
+    <h1 class="fw-bold">
+      For <span class="text-primary">Future</span><br>
+      <span class="text-secondary"> Leader </span><span> Enhancing.</span>
+    </h1>
+    <button type="button" class="btn btn-primary btn-md">Library</button>
+  </div>
+</div>
 
-
-
-
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/images/carousel1can.png" class="d-block w-100" alt="..." style="max-height: 720px;"> 
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class=" front-content">Your <span style="color:#ffff;font-weight: bolder;font-size:50px">Presence</span><br><span style="font-weight: lighter;"> Makes Things</span><span> Different.</span></h1>
-      <button type="button" class="btn btn-primary btn-lg">Class Rooms</button>
-
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/images/carousel3.png" class="d-block w-100" alt="..." style="max-height: 720px;">
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class="front-content">For <span style="color:#ffff;font-weight: bolder;font-size:50px;">Future</span><br><span style="font-weight: lighter;"> Leader to Enhancing </span><span> the Development.</span></h1>
-      <button type="button" class="btn btn-primary btn-lg">Library</button>
-
-      </div>
-    </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
