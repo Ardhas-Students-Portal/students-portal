@@ -153,9 +153,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                         ?>
                     </div>
-                    <div class="d-grid gap-2">
+                    <!-- <div class="col md-4">
+                        <a href="home.php" class="btn btn-primary">Back</a>
                         <button class="btn btn-primary" type="submit" id="loginbutton">Login</button>
+                    </div> -->
+                    <div class="form-row">
+                        <div class="form-group col-md-12 d-flex d-grid gap-2">
+                            <a href="home.php" class="btn btn-primary flex-grow-1">Back</a>
+                            <button class="btn btn-primary flex-grow-1 " type="submit" id="loginbutton">Login</button>
+                        </div>
                     </div>
+
+
+
                 </form>
             </div>
         </div>
