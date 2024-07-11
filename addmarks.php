@@ -4,6 +4,7 @@ session_start();
 $rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : '';
 $name = isset($_GET['name']) ? $_GET['name'] : '';
 $teacher = isset($_GET['teacher']) ? $_GET['teacher'] : ''; 
+$class = isset($_GET['class']) ? $_GET['class'] : ''; 
 ?>
 
 
@@ -59,14 +60,7 @@ $teacher = isset($_GET['teacher']) ? $_GET['teacher'] : '';
                         </div>
                         <div class="form-group col-md-6">
                             <label for="class">Select Class</label>
-                            <select class="form-control" id="class" name="class" required>
-                                <option value="">Select Class</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
+                            <input type="text" class="form-control" id="class" name="class" value="<?php echo htmlspecialchars($class); ?>" readonly>
                         </div>
                     </div>
                     <div class="form-row">
