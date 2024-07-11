@@ -3,10 +3,16 @@
 //     session_start();
 // }
 
+
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
 ?>
+<style>
+    #nav{
+        padding:18px
+    }
+</style>
 
-<nav class="navbar navbar-expand-md w-100" style="background-color:black">
+<nav class="navbar navbar-expand-md w-100" style="background-color:black" id="nav">
     <div class="container-fluid d-flex justify-content-between">
         <div class="d-flex justify-content-between d-md-none d-block">
             <a class="navbar-brand text-white" href="#">Navbar</a>

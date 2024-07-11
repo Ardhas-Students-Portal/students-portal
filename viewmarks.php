@@ -59,7 +59,6 @@ $teacher =  $_SESSION['teacher'];
                             include('dbconnect.php');
                             $sql = "SELECT * FROM student_marks where teacher = '$teacher'";
                             $result = $conn->query($sql);
-
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr data-exam='{$row['exam']}'>";
