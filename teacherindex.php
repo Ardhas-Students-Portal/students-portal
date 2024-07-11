@@ -16,6 +16,7 @@ $row = mysqli_fetch_assoc($result);
 if ($row) {
   $teacher = $row["name"];
   $_SESSION['teacher'] = $teacher;
+  // echo  $_SESSION['teacher'];
   if ($teacher) {
     $sql2 = "SELECT registernumber, name, class, gender, teacher, parentnumber, address FROM studentdata WHERE teacher = ?";
     $stmt2 = mysqli_prepare($conn, $sql2);
@@ -137,7 +138,7 @@ mysqli_close($conn);
   if ($result2->num_rows > 0) {
       while ($row2 = $result2->fetch_assoc()) {
           echo "<tr>";
-          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) . "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
+          echo "<td><a href='addmarks.php?rollNo=" . htmlspecialchars($row2["registernumber"]) . "&name=" . htmlspecialchars($row2["name"]) ."&teacher=" . htmlspecialchars($row2["teacher"])."&class=" . htmlspecialchars($row2["class"]). "'>" . htmlspecialchars($row2["registernumber"]) . "</a></td>";
           echo "<td>" . htmlspecialchars($row2["name"]) . "</td>";
           echo "<td>" . htmlspecialchars($row2["class"]) . "</td>";
           echo "<td>" . htmlspecialchars($row2["gender"]) . "</td>";

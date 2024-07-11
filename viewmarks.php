@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if(!isset($_SESSION['userid'])){
+    header('Location: Login.php');
+}   
+$teacher =  $_SESSION['teacher']; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,12 +57,8 @@ session_start();
                             <!-- PHP code to fetch and display records -->
                             <?php
                             include('dbconnect.php');
-                            if(!isset($_SESSION['teacheruserid'])){
-                                header('Location: Login.php');
-                            }
-                            $sql = "SELECT * FROM student_marks";
+                            $sql = "SELECT * FROM student_marks where teacher = '$teacher'";
                             $result = $conn->query($sql);
-
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr data-exam='{$row['exam']}'>";

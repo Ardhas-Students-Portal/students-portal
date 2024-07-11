@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('dbconnect.php');
+include('functions.php');
 
 $userId = '';
 $password = '';
@@ -44,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                     header("Location: admincontent.php");
                 } else if ($role == 'student') {
+                    $_SESSION['stu_name'] = fetchStudentName($conn, $userid);
                     if (isset($_POST['remember'])) {
                         setcookie('userId', $userId, time() + 86400, '/');
                         setcookie('password', $password, time() + 86400, '/');

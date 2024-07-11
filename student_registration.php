@@ -4,7 +4,15 @@ session_start();
 if(!isset($_SESSION['userid'])){
     header('Location: home.php');
 }
+$teacherQuery = "SELECT name FROM teachers";
+$teacherResult = $conn->query($teacherQuery);
+$teachers = [];
 
+if ($teacherResult->num_rows > 0) {
+    while($row = $teacherResult->fetch_assoc()) {
+        $teachers[] = $row['name'];
+    }
+}
 $name = isset($_POST["name"]) ? $_POST["name"] : "";
 $registernumber = isset($_POST["registernumber"]) ? $_POST["registernumber"] : "";
 $password = isset($_POST["createpassword"]) ? $_POST["createpassword"] : "";
@@ -317,8 +325,10 @@ hr.h-color {
                             <label for="teacher">Assign Teacher</label>
                             <select class="form-control" id="teacher" name="teacher">
                                 <option value="select">Select Teacher</option>
-                                <option value="Bharani">Bharani</option>
-                                <option value="Dhanush">Dhanush</option>
+                                <?php foreach($teachers as $teacher): ?>
+                                    <option value="<?php echo $teacher; ?>"><?php echo $teacher; ?></option>
+                                <?php endforeach; ?>
+
                             </select>
                             <div class="error-message" id="teacher-error">Please select the teacher</div>
                         </div>

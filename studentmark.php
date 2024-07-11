@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $socialScience = intval($_POST['socialScience']);
     $totalMarks = intval($_POST['totalMarks']);
     $totalpercentage = intval($_POST['totalpercentage']);
+    $teacher = ($_POST['teacher']);
 
     // Check if marks for the same exam already exist for the student
     $checkQuery = "SELECT * FROM student_marks WHERE roll_no = ? AND exam = ?";
@@ -32,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Marks for the selected exam already exist for this student. You can only update the marks by clicking view& edit page.'); window.location.href = 'teacherindex.php?rollNo=$rollNo&name=$name';</script>";
     } else {
         // Insert new marks
-        $stmt = $conn->prepare("INSERT INTO student_marks (roll_no, name, class, exam, tamil, english, hindi, maths, science, social_science, total_marks, totalpercentage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssiiiiiiii", $rollNo, $name, $class, $exam, $tamil, $english, $hindi, $maths, $science, $socialScience, $totalMarks, $totalpercentage);
+        $stmt = $conn->prepare("INSERT INTO student_marks (roll_no, name, class, exam, tamil, english, hindi, maths, science, social_science, total_marks, totalpercentage,teacher) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssiiiiiiiis", $rollNo, $name, $class, $exam, $tamil, $english, $hindi, $maths, $science, $socialScience, $totalMarks, $totalpercentage, $teacher);
 
         if ($stmt->execute()) {
             $_SESSION['rollNo'] = $rollNo;
             $_SESSION['name'] = $name;
-            setcookie("studentName", $name, time() + (86400 * 30), "/");
+            
             header("Location: success.php");
             exit();
         } else {
