@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // Marks for the same exam already exist, notify the teacher
-        echo "<script>alert('Marks for the selected exam already exist for this student. You can only update the marks by clicking view& edit page.'); window.location.href = 'viewmarks.php?rollNo=$rollNo&name=$name';</script>";
+        echo "<script>alert('Marks for the selected exam already exist for this student. You can only update the marks by clicking view& edit page.'); window.location.href = 'teacherindex.php?rollNo=$rollNo&name=$name';</script>";
     } else {
         // Insert new marks
         $stmt = $conn->prepare("INSERT INTO student_marks (roll_no, name, class, exam, tamil, english, hindi, maths, science, social_science, total_marks, totalpercentage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
