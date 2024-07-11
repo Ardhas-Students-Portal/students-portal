@@ -10,7 +10,8 @@ $isloggedin = isset($_SESSION['userid']);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARDHAS SCHOOL</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-..." crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -29,11 +30,12 @@ $isloggedin = isset($_SESSION['userid']);
     background-color: #fff;
   }
 
-  .dropdown-menu {
+  /* .dropdown-menu {
     z-index: 1000;
-  }
+  } */
 </style>
-
+<?php
+$current_page = basename($_SERVER['PHP_SELF']); ?>
 <body class="vh-100 over-flow-hidden">
   <nav class="navbar navbar-expand-lg fixed-top border-bottom navbar-scrolled">
     <div class="container">
@@ -53,15 +55,16 @@ $isloggedin = isset($_SESSION['userid']);
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body" id="offcanvasMenu">
+        <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 text-black">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+            <li class="nav-item <?= ($current_page == 'home.php') ? 'active' : '' ?>">
+              <a class="nav-link active text-white" aria-current="page" href="home.php">Home</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link  text-white" href="#services">Services</a>
+            <li class="nav-item <?= ($current_page == 'services') ? 'active' : '' ?>">
+              <a class="nav-link active text-white" href="#services">Services</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link active text-white" href="#about">About</a>
             </li>
@@ -99,27 +102,7 @@ $isloggedin = isset($_SESSION['userid']);
     </div>
   </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const offcanvasMenu = document.getElementById('offcanvasMenu');
-        console.log(offcanvasMenu);
-        const menuLinks = offcanvasMenu.querySelectorAll('.nav-link');
-        console.log(menuLinks);
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Find the closest offcanvas element
-                const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasMenu);
-                console.log(offcanvas);
-                if (offcanvas) {
-                    offcanvas.hide();
-                }
-            });
-        });
-    });
-</script>
 
 
 </body>

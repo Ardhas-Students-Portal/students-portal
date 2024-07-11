@@ -48,8 +48,8 @@
             <hr class="h-color mx-2">
         </div>
         <div class="content flex-grow-1">
-        <nav class="navbar navbar-expand-md w-100" style="background-color:black">
-        <div class="container-fluid d-flex justify-content-between">
+        <nav class="navbar navbar-expand-md w-100" style="background-color:black" >
+        <div class="container-fluid d-flex justify-content-between" style="padding:18px">
                 <div class="d-flex justify-content-between d-md-none d-block">
                     <a class="navbar-brand text-white" href="#">Navbar</a>
                     <button class="btn px-1 py-0 open-btn text-white"><i class="bi bi-list"></i></button>
