@@ -23,12 +23,12 @@
     font-weight: 900;
     color: #e1e1e9;
     line-height: 1em;
-    opacity: .6;2
+    opacity: .6;
     margin: 0;
     position: relative;
     z-index: -1;}
   .cat p{
-    font-size: 0px;
+    font-size: 22px;
     margin-top: -30px;
     font-weight: 600;
     line-height: 1.4em;
@@ -509,8 +509,8 @@ top:600px;
         firstname: {
           required: true,
           minlength: 2,
-          lettersonly: true  // Custom method to allow letters only
-
+          lettersonly: true,
+          noSpace:true
         },
         email: {
           required: true,
@@ -519,14 +519,16 @@ top:600px;
         },
         message: {
           required: true,
-          minlength: 5
+          minlength: 5,
+          noSpace:true
         }
       },
       messages: {
         firstname: {
           required: "Please enter your name",
           minlength: "Your name must consist atleast 2 characters",
-          lettersonly: "Please enter alphabets only"
+          lettersonly: "Please enter alphabets only",
+          noSpace:"Space not allowed"
 
         },
         email: {
@@ -536,7 +538,9 @@ top:600px;
         },
         message: {
           required: "Please enter a message",
-          minlength: "Your message must be atleast 5 characters long"
+          minlength: "Your message must be atleast 5 characters long",
+          noSpace:"Please enter some message"
+
         }
       },
       errorElement: "div",
@@ -557,6 +561,9 @@ top:600px;
     $.validator.addMethod("pattern", function(value, element) {
       return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter valid email address");
+    $.validator.addMethod("noSpace", function(value, element) { 
+    return value.indexOf(" ") < 0 && value != ""; 
+  }, "Space are not allowed");
 
 
   });
