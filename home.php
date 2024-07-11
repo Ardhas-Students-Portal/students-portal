@@ -28,8 +28,8 @@
     position: relative;
     z-index: -1;}
   .cat p{
-    font-size: 0px;
-    margin-top: -30px;
+    font-size: 22px;
+    margin-top: -40px;
     font-weight: 600;
     line-height: 1.4em;
     padding-bottom: 10px;
