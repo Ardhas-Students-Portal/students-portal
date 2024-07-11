@@ -1,7 +1,9 @@
-
-
 <?php
 include('dbconnect.php');
+session_start();
+if(!isset($_SESSION['userid'])){
+    header('Location: home.php');
+}
 
 $name = isset($_POST["name"]) ? $_POST["name"] : "";
 $registernumber = isset($_POST["registernumber"]) ? $_POST["registernumber"] : "";

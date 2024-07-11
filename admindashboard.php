@@ -1,8 +1,9 @@
 <?php 
-if (!isset($_SESSION['userid'])) {
-    header('Location: home.php');
-    exit();
-}
+// session_start();
+// if (!isset($_SESSION['userid'])) {
+//     header('Location: home.php');
+//     exit();
+// }    
 
 ?>
 <!DOCTYPE html>

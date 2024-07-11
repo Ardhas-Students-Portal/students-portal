@@ -1,8 +1,6 @@
  <?php
     include('dbconnect.php');
-    if(!isset($_SESSION['userid'])){
-        header('Location: home.php');
-    }
+    
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $id = $_POST['userid'];

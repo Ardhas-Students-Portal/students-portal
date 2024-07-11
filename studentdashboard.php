@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $studentname = $_SESSION['stu_name'];
     if (!isset($_SESSION['userid'])) {
         header('Location: login.php');
     }
@@ -47,7 +48,7 @@
                 <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
                     <i class="bi bi-person-circle pe-1"></i>
                     <a class="nav-link active" aria-current="page" href="studentdashboard.php" title="">
-                        Hi <?php echo $_SESSION['stu_name'] ?> 
+                        Hi <?php echo $studentname ?> 
                     </a>
                 </div>
             </div>
