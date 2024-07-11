@@ -30,11 +30,12 @@ $isloggedin = isset($_SESSION['userid']);
     background-color: #fff;
   }
 
-  .dropdown-menu {
+  /* .dropdown-menu {
     z-index: 1000;
-  }
+  } */
 </style>
-
+<?php
+$current_page = basename($_SERVER['PHP_SELF']); ?>
 <body class="vh-100 over-flow-hidden">
   <nav class="navbar navbar-expand-lg fixed-top border-bottom navbar-scrolled">
     <div class="container">
@@ -56,13 +57,14 @@ $isloggedin = isset($_SESSION['userid']);
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 text-black">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+            <li class="nav-item <?= ($current_page == 'home.php') ? 'active' : '' ?>">
+              <a class="nav-link active text-white" aria-current="page" href="home.php">Home</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item <?= ($current_page == 'services') ? 'active' : '' ?>">
               <a class="nav-link active text-white" href="#services">Services</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link active text-white" href="#about">About</a>
             </li>
