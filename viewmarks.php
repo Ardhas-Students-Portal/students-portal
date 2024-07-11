@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['userid'])){
     header('Location: Login.php');
 }   
-$teacher =  $_SESSION['teacher'];
+$teacher =  $_SESSION['teacher']; 
 ?>
 <!DOCTYPE html>
 <html lang="en">

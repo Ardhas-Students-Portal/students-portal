@@ -1,8 +1,9 @@
 <?php
 session_start();
-
+// echo $_SESSION['teacher'];
 $rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : '';
 $name = isset($_GET['name']) ? $_GET['name'] : '';
+$teacher = isset($_GET['teacher']) ? $_GET['teacher'] : ''; 
 ?>
 
 
@@ -38,6 +39,12 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
                 <div class="form-group col-md-6">
                     <label for="name">Student Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly>
+                </div>
+               
+                <div class="form-group col-md-12">
+                    <label for="teacher">Teacher</label>
+                    <input type="text" class="form-control" id="teacher" name="teacher" value="<?php echo htmlspecialchars($teacher); ?>" readonly>
+               
                 </div>
             </div>
                     <div class="form-row">
