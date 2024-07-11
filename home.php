@@ -168,7 +168,23 @@
 }
 
 
+.modal-body img{
 
+width:450px;height:500px;}
+@media screen and (min-width: 320px) {
+
+.modal-body img{
+  width:250px;height:350px;
+
+}
+}
+/* @media screen and (max-width: 375px) {
+
+.modal-body img{
+  width:300px;height:350px;
+
+}
+} */
 
     </style>
 
@@ -195,7 +211,24 @@
       Your <span class="text-primary">Inspiration</span><br>
       <span class="text-secondary"> Partner for </span><span>Growth.</span>
     </h1>
-    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <div class="container">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="exampleModalLabel">Admission Opens</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <img src="assets/images/admission.png">
+      </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </div>
 
@@ -489,7 +522,7 @@
           required: true,
           minlength: 2,
           lettersonly: true,
-          noSpace:true
+          noMiddleSpace:true
         },
         email: {
           required: true,
@@ -518,7 +551,7 @@
         message: {
           required: "Please enter a message",
           minlength: "Your message must be atleast 5 characters long",
-          noSpace:"Please enter some message"
+          noMiddleSpace:"Please enter some message"
 
         }
       },
@@ -540,9 +573,12 @@
     $.validator.addMethod("pattern", function(value, element) {
       return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter valid email address");
-    $.validator.addMethod("noSpace", function(value, element) { 
+    $.validator.addMethod("noMiddleSpace", function(value, element) { 
     return value.indexOf(" ") < 0 && value != ""; 
   }, "Space are not allowed");
+  $.validator.addMethod("noSpace", function(value, element) {
+      return this.optional(element) || /^(?!\s).*$/i.test(value);
+    }, "Please enter valid email address");
 
 
   });
