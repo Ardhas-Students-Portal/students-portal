@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -542,7 +545,7 @@ width:450px;height:500px;}
           <label for="message" class="d-flex justify-content-start">Message</label>
           <textarea class="form-control" id="message" name="message" placeholder="Write your query" style="height:100px" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
@@ -615,11 +618,13 @@ width:450px;height:500px;}
   }, "Space are not allowed");
   $.validator.addMethod("noSpace", function(value, element) {
       return this.optional(element) || /^(?!\s).*$/i.test(value);
-    }, "Please enter valid email address");
+    }, "Please enter message");
 
 
   });
+
 </script>
+
 
 
 
@@ -661,6 +666,9 @@ width:450px;height:500px;}
 <?php 
     include("footer.php");
 ?>
+
+
+
 </body>
 </html>
 
