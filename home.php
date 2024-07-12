@@ -656,6 +656,7 @@ width:450px;height:500px;}
     <img src="assets/images/gallery5.png">
     
   </div>
+  
 </div>
 </div>
 
