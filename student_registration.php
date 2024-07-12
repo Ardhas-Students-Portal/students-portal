@@ -1,4 +1,6 @@
 <?php
+
+
 include('dbconnect.php');
 session_start();
 if (!$_SESSION['adminisloggedin']) {
@@ -29,29 +31,45 @@ $address = isset($_POST["address"]) ? $_POST["address"] : "";
 if (!empty($name) && !empty($registernumber) && !empty($password) && !empty($class) && !empty($dateofbirth) && !empty($gender) && !empty($teacher) && !empty($parentnumber) && !empty($alternatenumber) && !empty($address)) {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO studentdata (name, registernumber, password, class, dateofbirth, gender, teacher, parentnumber, alternatenumber, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssss", $name, $registernumber, $hashed_password, $class, $dateofbirth, $gender, $teacher, $parentnumber, $alternatenumber, $address);
+    $file_name = $_FILES['image']['name'];
+    $temp_name = $_FILES['image']['tmp_name'];
+    $folder = 'studentsimages/' . $file_name;
 
-    if ($stmt->execute()) {
-        $sql = "INSERT INTO user (Userid, Password, Role) VALUES (?, ?, 'student')";
-        $stmt1 = $conn->prepare($sql);
-        $stmt1->bind_param("is", $registernumber, $hashed_password);
+    if (move_uploaded_file($temp_name, $folder)) {
+        $sql = "INSERT INTO studentdata (name, registernumber, password, class, dateofbirth, gender, teacher, parentnumber, alternatenumber, address, file_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssssssss", $name, $registernumber, $hashed_password, $class, $dateofbirth, $gender, $teacher, $parentnumber, $alternatenumber, $address, $file_name);
 
-        if ($stmt1->execute()) {
-            echo "<script>document.getElementById('confirmationMessage').style.display = 'block';</script>";
+        if ($stmt->execute()) {
+            $sql = "INSERT INTO user (Userid, Password, Role) VALUES (?, ?, 'student')";
+            $stmt1 = $conn->prepare($sql);
+            $stmt1->bind_param("is", $registernumber, $hashed_password);
+
+            if ($stmt1->execute()) {
+                echo "<script>document.getElementById('confirmationMessage').style.display = 'block';</script>";
+            } else {
+                echo "Error inserting into user table: " . $stmt1->error;
+            }
+
+            $stmt1->close();
         } else {
-            echo "Error inserting into user table: " . $stmt1->error;
+            echo "Error inserting into studentdata table: " . $stmt->error;
         }
 
-        $stmt1->close();
+        $stmt->close();
     } else {
-        echo "Error inserting into studentdata table: " . $stmt->error;
+        echo "Error uploading the file.";
     }
-
-    $stmt->close();
 }
+
 $conn->close();
+?>
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -258,7 +276,7 @@ hr.h-color {
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" id="form">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" id="form" enctype="multipart/form-data">
                         <h2>Student Registration</h2>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -352,6 +370,11 @@ hr.h-color {
                             <textarea class="form-control" name="address" id="address"></textarea>
                             <div class="error-message" id="address-error">Please enter a valid address.</div>
                         </div>
+                        <div class="form-group">
+                            <label for="file">Upload Your Image</label>
+                            <input type="file" name="image" id="image">
+                            <div class="error-message" id="file-error">Please Upload Image </div>
+                        </div>
                         <button class="btn btn-primary mt-3 btn-block" id="btn">SUBMIT</button>
                         <div id="confirmationMessage" class="mt-3" style="display: none;">
                             <div class="alert alert-success" role="alert">
@@ -366,148 +389,150 @@ hr.h-color {
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
-        function isValidName(name) {
-            return /^[a-zA-Z]/.test(name);
+   $(document).ready(function() {
+    function isValidName(name) {
+        return /^[a-zA-Z]/.test(name);
+    }
+
+    function isvalidNumber(registernumber) {
+        return /^[0-9]+$/.test(registernumber);
+    }
+
+    function isValidPassword(createpassword) {
+        return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/.test(createpassword);
+    }
+
+    function isValidPhone(phone) {
+        return phone.length === 10 && !isNaN(phone) && ['9', '8', '7', '6'].includes(phone.charAt(0));
+    }
+
+    function isvalidAddress(address) {
+        return address.length >= 10 && address.length <= 400;
+    }
+
+    function isValidClassname(classname) {
+        return /^[a-zA-Z0-9 ]+$/.test(classname);
+    }
+
+    function isValidDOB(dateofbirth) {
+        var today = new Date();
+        var dob = new Date(dateofbirth);
+        return dob.getFullYear() <= (today.getFullYear() - 6);
+    }
+
+    function validateInput(input, validationFn, errorElementId) {
+        if (!validationFn(input.val())) {
+            $(errorElementId).show();
+            return false;
+        } else {
+            $(errorElementId).hide();
+            return true;
+        }
+    }
+
+    function validateForm() {
+        var isValid = true;
+        isValid = validateInput($('#name'), isValidName, '#name-error') && isValid;
+        isValid = validateInput($('#registernumber'), isvalidNumber, '#registernumber-error') && isValid;
+        isValid = validateInput($('#createpassword'), isValidPassword, '#createpassword-error') && isValid;
+        isValid = validateInput($('#class'), isValidClassname, '#class-error') && isValid;
+        isValid = validateInput($('#dateofbirth'), isValidDOB, '#dateofbirth-error') && isValid;
+        isValid = validateInput($('#parentnumber'), isValidPhone, '#parentnumber-error') && isValid;
+        isValid = validateInput($('#alternatenumber'), isValidPhone, '#alternatenumber-error') && isValid;
+        isValid = validateInput($('#address'), isvalidAddress, '#address-error') && isValid;
+
+        var createpassword = $('#createpassword').val();
+        var confirmpassword = $('#confirmpassword').val();
+        if (createpassword !== confirmpassword) {
+            $('#confirmpassword-error').show();
+            isValid = false;
+        } else {
+            $('#confirmpassword-error').hide();
         }
 
-        function isvalidNumber(registernumber) {
-            return /^[0-9]+$/.test(registernumber);
+        var gender = $('input[name="gender"]:checked').val();
+        if (!gender) {
+            $('#gender-error').show();
+            isValid = false;
+        } else {
+            $('#gender-error').hide();
         }
 
-        function isValidPassword(createpassword) {
-            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/.test(createpassword);
+        var teacher = $('#teacher').val();
+        if (teacher === "select") {
+            $('#teacher-error').show();
+            isValid = false;
+        } else {
+            $('#teacher-error').hide();
         }
 
-        function isValidPhone(phone) {
-            return phone.length === 10 && !isNaN(phone) && ['9', '8', '7', '6'].includes(phone.charAt(0));
+        var parentnumber = $('#parentnumber').val();
+        var alternatenumber = $('#alternatenumber').val();
+        if (parentnumber === alternatenumber) {
+            $('#phone-unique-error').show();
+            isValid = false;
+        } else {
+            $('#phone-unique-error').hide();
         }
 
-        function isvalidAddress(address) {
-            return address.length >= 10 && address.length <= 400;
+        var image = $('#image').val();
+        if (!image) {
+            $('#file-error').show();
+            isValid = false;
+        } else {
+            $('#file-error').hide();
         }
 
-        function isValidClassname(classname) {
-            return /^[a-zA-Z0-9 ]+$/.test(classname);
-        }
+        return isValid;
+    }
 
-        function isValidDOB(dateofbirth) {
-            var today = new Date();
-            var dob = new Date(dateofbirth);
-            return dob.getFullYear() <= (today.getFullYear() - 6);
-        }
-
-        function validateInput(input, validationFn, errorElementId) {
-            if (!validationFn(input.val())) {
-                $(errorElementId).show();
-                return false;
-            } else {
-                $(errorElementId).hide();
-                return true;
-            }
-        }
-
-        function validateForm() {
-            var isValid = true;
-            isValid = validateInput($('#name'), isValidName, '#name-error') && isValid;
-            isValid = validateInput($('#registernumber'), isvalidNumber, '#registernumber-error') && isValid;
-            isValid = validateInput($('#createpassword'), isValidPassword, '#createpassword-error') && isValid;
-            isValid = validateInput($('#class'), isValidClassname, '#class-error') && isValid;
-            isValid = validateInput($('#dateofbirth'), isValidDOB, '#dateofbirth-error') && isValid;
-            isValid = validateInput($('#parentnumber'), isValidPhone, '#parentnumber-error') && isValid;
-            isValid = validateInput($('#alternatenumber'), isValidPhone, '#alternatenumber-error') && isValid;
-            isValid = validateInput($('#address'), isvalidAddress, '#address-error') && isValid;
-
-            var createpassword = $('#createpassword').val();
-            var confirmpassword = $('#confirmpassword').val();
-            if (createpassword !== confirmpassword) {
-                $('#confirmpassword-error').show();
-                isValid = false;
-            } else {
-                $('#confirmpassword-error').hide();
-            }
-
-            var gender = $('input[name="gender"]:checked').val();
-            if (!gender) {
-                $('#gender-error').show();
-                isValid = false;
-            } else {
-                $('#gender-error').hide();
-            }
-
-            var teacher = $('#teacher').val();
-            if (teacher === "select") {
-                $('#teacher-error').show();
-                isValid = false;
-            } else {
-                $('#teacher-error').hide();
-            }
-
-            var parentnumber = $('#parentnumber').val();
-            var alternatenumber = $('#alternatenumber').val();
-            if (parentnumber === alternatenumber) {
-                $('#phone-unique-error').show();
-                isValid = false;
-            } else {
-                $('#phone-unique-error').hide();
-            }
-
-            return isValid;
-        }
-
-        $('input, textarea').on('input', function() {
-            validateForm();
-        });
-
-        $('input[type=radio], select').on('change', function() {
-            validateForm();
-        });
-
-        $('#createpassword-icon').on('click', function() {
-            var passwordInput = $('#createpassword');
-            var icon = $(this);
-            if (passwordInput.attr('type') === 'password') {
-                passwordInput.attr('type', 'text');
-                icon.removeClass('bi-eye-slash').addClass('bi-eye');
-            } else {
-                passwordInput.attr('type', 'password');
-                icon.removeClass('bi-eye').addClass('bi-eye-slash');
-            }
-        });
-
-        $('#confirmpassword-icon').on('click', function() {
-            var passwordInput = $('#confirmpassword');
-            var icon = $(this);
-            if (passwordInput.attr('type') === 'password') {
-                passwordInput.attr('type', 'text');
-                icon.removeClass('bi-eye-slash').addClass('bi-eye');
-            } else {
-                passwordInput.attr('type', 'password');
-                icon.removeClass('bi-eye').addClass('bi-eye-slash');
-            }
-        });
-
-        $('#btn').click(function(e) {
-            e.preventDefault();
-            if (validateForm()) {
-                $('form').submit();
-                $('#confirmationMessage').show();
-                setTimeout(function() {
-                    $('#confirmationMessage').hide();
-                }, 6500);
-            }
-        });
+    $('input, textarea').on('input', function() {
+        validateForm();
     });
+
+    $('input[type=radio], select').on('change', function() {
+        validateForm();
+    });
+
+    $('#createpassword-icon').on('click', function() {
+        var passwordInput = $('#createpassword');
+        var icon = $(this);
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            icon.removeClass('bi-eye-slash').addClass('bi-eye');
+        } else {
+            passwordInput.attr('type', 'password');
+            icon.removeClass('bi-eye').addClass('bi-eye-slash');
+        }
+    });
+
+    $('#confirmpassword-icon').on('click', function() {
+        var passwordInput = $('#confirmpassword');
+        var icon = $(this);
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            icon.removeClass('bi-eye-slash').addClass('bi-eye');
+        } else {
+            passwordInput.attr('type', 'password');
+            icon.removeClass('bi-eye').addClass('bi-eye-slash');
+        }
+    });
+
+    $('#btn').click(function(e) {
+        e.preventDefault();
+        if (validateForm()) {
+            $('form').submit();
+            $('#confirmationMessage').show();
+            setTimeout(function() {
+                $('#confirmationMessage').hide();
+            }, 6500);
+        }
+    });
+});
+
 </script>
 </body>
-
-
-
-
-
-
-
-
+</html>
 
 
 
