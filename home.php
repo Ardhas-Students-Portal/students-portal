@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARDHAS SCHOOL</title>
     <link rel="stylesheet" href="style.css">
-   
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+ 
 </head>
 <style>
 
@@ -211,7 +216,7 @@ width:450px;height:500px;}
       Your <span class="text-primary">Inspiration</span><br>
       <span class="text-secondary"> Partner for </span><span>Growth.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalCenter">Admission Opens</button>
+    <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Admission Opens</button>
     <div class="container">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -239,8 +244,25 @@ width:450px;height:500px;}
       Your <span class="text-primary">Presence</span><br>
       <span class="text-secondary"> Makes Things </span><span> Different.</span>
     </h1>
-    <button type="button" class="btn btn-primary">Class Rooms</button>
+    <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModalclassroom">Class Rooms</button>
+
+<div class="container">
+<div class="modal fade" id="exampleModalclassroom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title text-black" id="exampleModalLabel">Class Rooms</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
+  <div class="modal-body">
+  <img src="assets/images/classroom.png">
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
 </div>
 
 <div class="carousel-item">
@@ -250,7 +272,25 @@ width:450px;height:500px;}
       For <span class="text-primary">Future</span><br>
       <span class="text-secondary"> Leader </span><span> Enhancing.</span>
     </h1>
-    <button type="button" class="btn btn-primary btn">Library</button>
+    <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModallib">E-Library</button>
+
+    <div class="container">
+<div class="modal fade" id="exampleModallib" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="exampleModalLabel">E-Library</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <img src="assets/images/library.png">
+      </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </div>
 
@@ -505,7 +545,7 @@ width:450px;height:500px;}
           <label for="message" class="d-flex justify-content-start">Message</label>
           <textarea class="form-control" id="message" name="message" placeholder="Write your query" style="height:100px" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
@@ -578,11 +618,13 @@ width:450px;height:500px;}
   }, "Space are not allowed");
   $.validator.addMethod("noSpace", function(value, element) {
       return this.optional(element) || /^(?!\s).*$/i.test(value);
-    }, "Please enter valid email address");
+    }, "Please enter message");
 
 
   });
+
 </script>
+
 
 
 
@@ -614,6 +656,7 @@ width:450px;height:500px;}
     <img src="assets/images/gallery5.png">
     
   </div>
+  
 </div>
 </div>
 
@@ -624,6 +667,9 @@ width:450px;height:500px;}
 <?php 
     include("footer.php");
 ?>
+
+
+
 </body>
 </html>
 

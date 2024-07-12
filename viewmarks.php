@@ -3,7 +3,7 @@ session_start();
 if(!$_SESSION['teacherisloggedin']){
     header('Location: home.php');
     exit();
-   }  
+}  
 $teacher =  $_SESSION['teacher']; 
 ?>
 <!DOCTYPE html>
@@ -15,6 +15,8 @@ $teacher =  $_SESSION['teacher'];
     <title>viewmarks</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/adminstyle.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
 
 </head>
 
@@ -26,17 +28,16 @@ $teacher =  $_SESSION['teacher'];
         <div class="content flex-grow-1">
             <?php include('admin_Stuheader.php'); ?>
             <div class="container mt-5 ">
-            <div class="form-group">
-        <!-- <label for="examFilter">Select Exam:</label> -->
-        <select class="form-control" id="examFilter">
-            <option value="all">Choose Exam Now!</option>
-            <option value="Quarterly Exam">Quarterly Exam</option>
-            <option value="Halfyearly Exam">Halfyearly Exam</option>
-            <option value="Annual Exam">Annual Exam</option>
-        </select>
-    </div>
+                <div class="form-group">
+                    <select class="form-control" id="examFilter">
+                        <option value="all">Choose Exam Now!</option>
+                        <option value="Quarterly Exam">Quarterly Exam</option>
+                        <option value="Halfyearly Exam">Halfyearly Exam</option>
+                        <option value="Annual Exam">Annual Exam</option>
+                    </select>
+                </div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="myTable">
                         <thead>
                             <tr>
                                 <th>Roll Number</th>
@@ -79,40 +80,57 @@ $teacher =  $_SESSION['teacher'];
                                     echo "</tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='11'>No records found</td></tr>";
+                                echo "<tr><td colspan='13'>No records found</td></tr>";
                             }
 
                             $conn->close();
                             ?>
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+   
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+
+
+
+
+
     <script>
-    $(document).ready(function() {
-        $('#examFilter').on('change', function() {
-            var selectedExam = $(this).val();
-            $('tbody tr').each(function() {
-                var rowExam = $(this).data('exam');
-                if (selectedExam === 'all' || rowExam === selectedExam) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
+        $(document).ready(function() {
+            new DataTable('#myTable', {
+                layout: {
+                topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+});
+            
+            $('#examFilter').on('change', function() {
+                var selectedExam = $(this).val();
+                $('tbody tr').each(function() {
+                    var rowExam = $(this).data('exam');
+                    if (selectedExam === 'all' || rowExam === selectedExam) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
-
 </html>
