@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($conn->query($sql) === TRUE) {
     echo '<script>
-            alert("Submitted");
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+Swal.fire("SweetAlert2 is working!");
             window.location.href="home.php";
             </script>';
   } else {

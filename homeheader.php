@@ -13,7 +13,7 @@ $isloggedin = isset($_SESSION['userid']);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-..." crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
+
 </head>
 <style>
   .navbar-scrolled,
@@ -38,7 +38,7 @@ $current_page = basename($_SERVER['PHP_SELF']); ?> -->
       <div class="d-flex">
         <img src="assets/images/logo.png" style="width:40px;height:40px;">
 
-        <a class="navbar-brand text-white" href="#" style="font-weight: bold;">ARDHAS SCHOOL</a>
+        <a class="navbar-brand text-white" href="home.php" style="font-weight: bold;">ARDHAS SCHOOL</a>
       </div>
       <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

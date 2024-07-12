@@ -71,8 +71,8 @@
         <div class="row">
           <div class="col-md-3">
             <div class="logo d-flex">
-            <img src="assets/images/logo.png" style="width:35px;height:35px;">
-            <h2>ARDHAS SCHOOL</h2></div>
+            <img src="assets/images/logo.png" style="width:40px;height:40px;">
+            <h2  class="pt-2" style="font-size:20px;">ARDHAS SCHOOL</h2></div>
             <p> 
             We are committed to fostering personal growth by 
                              supporting the holistic development of our students—intellectually, socially, emotionally, and
