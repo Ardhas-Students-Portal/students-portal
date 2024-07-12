@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!$_SESSION['teacherisloggedin']){
-    header('Location: Login.php');
+    header('Location: home.php');
     exit();
    }  
 $teacher =  $_SESSION['teacher']; 

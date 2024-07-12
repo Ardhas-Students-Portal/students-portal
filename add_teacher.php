@@ -1,7 +1,9 @@
  <?php
     include('dbconnect.php');
-    
-
+    if(!$_SESSION['adminisloggedin']){
+        header('Location: home.php');
+        exit();
+    }
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $id = $_POST['userid'];
         $name = $_POST['name'];
