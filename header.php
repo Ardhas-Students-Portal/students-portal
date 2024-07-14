@@ -1,20 +1,14 @@
 <?php
-// if (!isset($_SESSION)) {
-//     session_start();
-// }
-
 if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
     exit();
 }
 
-
-
-$name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
+$name = empty($_SESSION['name']) ? "Admin" : $_SESSION['name'];
 ?>
 <style>
-    #nav{
-        padding:18px
+    #nav {
+        padding: 18px;
     }
 </style>
 
@@ -27,7 +21,7 @@ $name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
         <div class="d-flex ms-auto align-items-center" style="color:white" id="nav">
             <i class="bi bi-person-circle pe-1"></i>
             <a class="nav-link active" aria-current="page" href="adminprofile.php" title="You can update the Profile">
-                Hi <?php echo $name ?>
+                Hi <?php echo htmlspecialchars($name); ?>
             </a>
         </div>
     </div>

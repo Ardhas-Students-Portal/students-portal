@@ -1,12 +1,14 @@
-<?php 
+<?php
 session_start();
 // echo $_SESSION['userid'];
 if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
     exit();
 }
-
-
+include('dbconnect.php');
+$sql = "SELECT * FROM `teachers`";
+$result = mysqli_query($conn, $sql);
+$num_teacher = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -61,14 +63,21 @@ if (!$_SESSION['adminisloggedin']) {
         .highlight {
             background-color: yellow;
         }
-        #container{
+
+        #container {
             padding: 35px 40px;
-            
+
         }
-        #content{
+
+        #content {
             background-color: white;
         }
-        
+        caption {
+            font-size: 1.2rem;
+            text-align: left;
+            padding: 10px 0;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -77,8 +86,8 @@ if (!$_SESSION['adminisloggedin']) {
         <div class="sidebar" id="side_nav">
             <?php include('admindashboard.php') ?>
         </div>
-        <div class="content flex-grow-1 " id="content" >
-            <?php include('header.php')?>
+        <div class="content flex-grow-1 " id="content">
+            <?php include('header.php') ?>
             <div class="container" id="container">
                 <div class="search-bar my-2">
                     <div class="input-group">
@@ -90,6 +99,7 @@ if (!$_SESSION['adminisloggedin']) {
                     </div>
                 </div>
                 <table class="table table-striped">
+                <caption>Number of Teachers: <?php echo $num_teacher; ?></caption>
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -103,9 +113,6 @@ if (!$_SESSION['adminisloggedin']) {
                     </thead>
                     <tbody id="studentTableBody">
                         <?php
-                        include('dbconnect.php');
-                        $sql = "SELECT * FROM `teachers`";
-                        $result = mysqli_query($conn, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $name = $row['name'];
@@ -127,47 +134,36 @@ if (!$_SESSION['adminisloggedin']) {
                             }
                         }
                         ?>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>
-        document.getElementById('searchInput').addEventListener('input', function() {
-            var input = document.getElementById('searchInput').value.toLowerCase();
-            var table = document.getElementById('studentTableBody');
-            var tr = table.getElementsByTagName('tr');
-
-            for (var i = 0; i < tr.length; i++) {
-                var td = tr[i].getElementsByTagName('td')[0];
-                if (td) {
-                    var txtValue = td.textContent || td.innerText;
-                    if (txtValue.toLowerCase().indexOf(input) > -1) {
-                        tr[i].style.display = 'No data found';
-                    } else {
-                        tr[i].style.display = 'none';
-                    }
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function(){
+            let query = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#studentTableBody tr');
+            let teacherCount = 0;
+            rows.forEach(function(row){
+                let name = row.cells[0].textContent.toLowerCase();
+                console.log(name);
+                if(query === '' || name.includes(query)){
+                    row.style.display = '';
+                    teacherCount++;
                 }
-            }
-        });
-
-        document.getElementById('searchButton').addEventListener('click', function() {
-            var input = document.getElementById('searchInput').value.toLowerCase();
-            var table = document.getElementById('studentTableBody');
-            var tr = table.getElementsByTagName('tr');
-
-            for (var i = 0; i < tr.length; i++) {
-                var td = tr[i].getElementsByTagName('td')[1];
-                if (td) {
-                    var txtValue = td.textContent || td.innerText;
-                    if (txtValue.toLowerCase().indexOf(input) > -1) {
-                        tr[i].style.display = '';
-                    } else {
-                        tr[i].style.display = 'none';
-                    }
+                else{
+                    row.style.display = 'none';
                 }
-            }
-        });
+                if(teacherCount <= 0){
+                    document.querySelector('caption').innerText = `No data found`
+                }else if(teacherCount == 1){
+                    document.querySelector('caption').innerText = `Number of Teacher: ` + teacherCount;
+                }else{
+                    document.querySelector('caption').innerText = `Number of Teachers: ` + teacherCount;
+                }
+            })
+        })
     </script>
 </body>
 

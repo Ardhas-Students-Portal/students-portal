@@ -6,12 +6,19 @@ if (!$_SESSION['adminisloggedin']) {
     header('Location: home.php');
     exit();
 }
-
-
 $userid = $_SESSION['userid'];
-$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
-$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-$phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';
+$sql = 'Select name, email, phone from `user` where Userid = ?';
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 'i', $userid);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$userdata = mysqli_fetch_assoc($result);
+
+$name = isset($userdata['name']) ? $userdata['name'] : "";
+$email =  isset($userdata['email']) ? $userdata['email'] : "";
+$phone = isset($userdata['phone']) ? $userdata['phone'] : "";
+
+$_SESSION['name'] = $name;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];

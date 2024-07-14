@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    // Fetch and create the pie chart
     try {
         const response = await fetch("chart.php");
         const chartData = await response.json();
-        const ctx = document.getElementById("piechart").getContext('2d');
+        const ctxPie = document.getElementById("piechart").getContext('2d');
 
-        new Chart(ctx, {
+        new Chart(ctxPie, {
             type: 'pie',
             data: chartData,
             options: {
@@ -21,14 +22,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
     } catch (error) {
-        console.error("Error fetching chart data:", error);
+        console.error("Error fetching pie chart data:", error);
     }
+    
     try {
-        const response = await fetch("chart.php");
+        const response = await fetch("barchart.php");
         const chartData = await response.json();
-        const ctx = document.getElementById("barchart").getContext('2d');
+        const ctxBar = document.getElementById("barchart").getContext('2d');
 
-        new Chart(ctx, {
+        new Chart(ctxBar, {
             type: 'bar',
             data: chartData,
             options: {
@@ -39,12 +41,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     },
                     title: {
                         display: true,
-                        text: 'Student Gender Distribution'
+                        text: 'Class Distribution'
                     }
                 }
             }
         });
     } catch (error) {
-        console.error("Error fetching chart data:", error);
+        console.error("Error fetching bar chart data:", error);
     }
 });
