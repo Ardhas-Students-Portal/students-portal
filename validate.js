@@ -16,9 +16,9 @@ $(document).ready(function(){
 
     function validateID() {
         var id = $('#userid').val().trim();
-        var idRegex = /^[0-9]{3}$/; 
+        var idRegex = /^[0-9]{3,}$/; 
        if (!idRegex.test(id)) {
-            $('#id-valid').text('Name must contain only 3 digits');
+            $('#id-valid').text('Name  contain minimum  3 digits');
             $('#id-valid').css("color","red");
             return false;
         } else {
@@ -229,7 +229,7 @@ $(document).ready(function(){
         }
         else if(!validateID()){
             validation = false;
-            $('#id-valid').text('userID must contain only 3 digits '); 
+            $('#id-valid').text('userID must contain minimum 3 digits '); 
 
         }else{
             $('#id-valid').text(''); 
@@ -337,8 +337,8 @@ $(document).ready(function(){
         }
 
         //gender validate
-        var maleChecked = $('#Male').prop('checked');
-        var femaleChecked = $('#Female').prop('checked');
+        var maleChecked = $('#male').prop('checked');
+        var femaleChecked = $('#female').prop('checked');
         if (!maleChecked && !femaleChecked) {
             validation = false;
             $('#gender-error').css("font-size","13px");

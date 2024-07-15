@@ -120,13 +120,13 @@
                                  <div class="mb-2">
                                      <label for="gender" class="form-check-label fw-bold mb-1">Gender</label>
                                      <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="gender" id="Male" value="Male">
+                                         <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
                                          <label class="form-check-label" for="male">
                                              Male
                                          </label>
                                      </div>
                                      <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
+                                         <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
                                          <label class="form-check-label" for="female">
                                              Female
                                          </label>
