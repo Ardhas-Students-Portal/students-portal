@@ -21,6 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $role = $_POST['role'];
 
+    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
+        $server_key = "6Ld0UA4qAAAAAF16S1tlptbqMqWo3ga04-2ApnHD";
+        $verifyresponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$server_key.'&response='.$_POST['g-recaptcha-response']);
+        $response = json_decode($verifyresponse);
+
+        if($response->success){
+
     $sql = "SELECT * FROM user WHERE userId = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 's', $userId);
@@ -76,6 +83,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     }
+} else {
+    $_SESSION['error-message'] = 'Recaptcha verification failed. Please try again.';
+    header('Location: login.php');
+    exit();
+}
+} else {
+$_SESSION['error-message'] = 'Please complete the recaptcha verification.';
+header('Location: login.php');
+exit();
+}
 }
 ?>
 
@@ -88,6 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <style>
         body {
             font-family: 'sans-serif';
@@ -111,6 +130,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             cursor: pointer;
         }
     </style>
+    <script>
+        function enablebutton(){
+            document.getElementById('loginbutton').disabled = false;
+        }
+    </script>
 </head>
 
 <body>
@@ -161,10 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                         ?>
                     </div>
-                    <!-- <div class="col md-4">
-                        <a href="home.php" class="btn btn-primary">Back</a>
-                        <button class="btn btn-primary" type="submit" id="loginbutton">Login</button>
-                    </div> -->
+                    <div  class="input-group mb-3 d-flex justify-content-center">
+                        <div id="recaptcha" >
+                            <div class="g-recaptcha" data-sitekey="6Ld0UA4qAAAAAHaWEYBzR2npEqPQCo3Nxe-_BqFp" data-callback="enablebutton"></div>
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-12 d-flex d-grid gap-2">
                             <a href="home.php" class="btn btn-primary flex-grow-1">Back</a>
